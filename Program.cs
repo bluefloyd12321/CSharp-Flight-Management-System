@@ -7,6 +7,9 @@ class Program
 {
     static void Main(string[] args)
     {
+
+        // created main menu loop and methods for logging in and regestering an account
+
         Console.WriteLine("******************************");
         Console.WriteLine("*** Flight Reservation App ***");
         Console.WriteLine("******************************");
