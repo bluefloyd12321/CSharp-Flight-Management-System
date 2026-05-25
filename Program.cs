@@ -7,16 +7,23 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Title = "*** Flight Reservation App ***";
 
-        // created main menu loop and methods for logging in and regestering an account
+        List<User> users = new List<User>();
+        User vee = new User("Vee McCabe", "Vee@gmail.com", "0224623917", "ADMIN");
+        users.Add(vee);
 
-        Console.WriteLine("******************************");
-        Console.WriteLine("*** Flight Reservation App ***");
-        Console.WriteLine("******************************");
+
+
+
         int mainMenuOption;
         bool LOOP = true;
         do
         {
+            Console.WriteLine();
+            Console.WriteLine("******************************");
+            Console.WriteLine("*** Flight Reservation App ***");
+            Console.WriteLine("******************************");
             Console.WriteLine();
             Console.WriteLine("[ 1. Login to an account ]");
             Console.WriteLine("[ 2. Register an account ]");
@@ -40,6 +47,7 @@ class Program
             }
         } while (LOOP);
 
+        Console.WriteLine();
         Console.WriteLine("Exiting Flight App...");
         Console.WriteLine("Thank You!");
 
