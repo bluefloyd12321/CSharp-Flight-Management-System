@@ -6,9 +6,6 @@ namespace FlightManagementSystem
 {
     public class Admin : User
     {
-        public bool ExampleMethod()
-        {
-            return true;
-        }
+        
     }
 }

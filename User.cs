@@ -15,13 +15,6 @@ namespace FlightManagementSystem
 
         }
 
-        public static bool Login()
-        {
-            return true;
-        }
-        public static bool Logout()
-        {
-            return true;
-        }
+        
     }
 }

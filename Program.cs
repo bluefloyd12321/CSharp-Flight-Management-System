@@ -1,4 +1,5 @@
-﻿using System.Threading.Channels;
+﻿using System.Reflection.Metadata;
+using System.Threading.Channels;
 using System.Transactions;
 
 namespace FlightManagementSystem;
@@ -36,10 +37,18 @@ class Program
                     LOOP = false;
                     break; 
                 case 1:
-                    LoginToAccount();
+                    LoginToAccount(users);
                     break;
                 case 2:
-                    RegisterAnAccount();
+                    RegisterAnAccount(users);
+                    break;
+                case 3:
+                    Console.WriteLine();
+                    Console.WriteLine("DEBUG MODE");
+                    foreach (User x in users)
+                    {
+                        Console.WriteLine($"user");
+                    }
                     break;
                 default:
                     Console.WriteLine("Unknown option, try again...");
@@ -53,7 +62,7 @@ class Program
 
     }// end of main
 
-    public static void LoginToAccount()
+    public static void LoginToAccount(List<User> users)
     {
         Console.WriteLine();
         Console.WriteLine("[ Logging Into An Account ]");
@@ -65,7 +74,7 @@ class Program
         return;
     }
 
-    public static void RegisterAnAccount()
+    public static void RegisterAnAccount(List<User> users)
     {
         Console.WriteLine();
         Console.WriteLine("[ Registering An Account ]");
@@ -77,6 +86,20 @@ class Program
         string registerPassword = Console.ReadLine();
         Console.Write("Please confirm your Password: ");
         string confirmPassword = Console.ReadLine();
+
+        if (registerPassword == confirmPassword)
+        {
+            Console.WriteLine();
+            Console.WriteLine("You are now registered!");
+            
+            User newUser = new User(registerName, registerEmail, registerPassword, "PASSANGER");
+            users.Add(newUser);
+        }
+        else
+        {
+            Console.WriteLine();
+            Console.WriteLine("Passwords do not match, please try again...");
+        }
 
         return;
     }
