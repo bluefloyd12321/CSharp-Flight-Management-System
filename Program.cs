@@ -12,16 +12,14 @@ class Program
 
         List<User> users = new List<User>();
         User vee = new User("Vee McCabe", "Vee@gmail.com", "0224623917", "ADMIN");
+        User morgan = new User("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321", "PASSANGER");
         users.Add(vee);
-
-
-
+        users.Add(morgan);
 
         int mainMenuOption;
         bool LOOP = true;
         do
         {
-            Console.WriteLine();
             Console.WriteLine("******************************");
             Console.WriteLine("*** Flight Reservation App ***");
             Console.WriteLine("******************************");
@@ -42,18 +40,19 @@ class Program
                 case 2:
                     RegisterAnAccount(users);
                     break;
-                case 3:
+                case 5:
                     Console.WriteLine();
                     Console.WriteLine("DEBUG MODE");
-                    foreach (User x in users)
+                    foreach (User display in users)
                     {
-                        Console.WriteLine($"user");
+                        Console.WriteLine($"{display.Username}, {display.Email}, {display.Password}, {display.UserType}");
                     }
                     break;
                 default:
                     Console.WriteLine("Unknown option, try again...");
                     break;
             }
+            Console.WriteLine();
         } while (LOOP);
 
         Console.WriteLine();
@@ -70,8 +69,17 @@ class Program
         string loginName = Console.ReadLine();
         Console.Write("Please enter your Password: ");
         string loginPassword = Console.ReadLine();
-
-        return;
+        Console.WriteLine();
+        
+        User searchName = users.Find(searchName => searchName.Username.Equals(loginName, StringComparison.OrdinalIgnoreCase));
+        if (loginPassword == searchName.Password)
+        {
+            Console.WriteLine("LOGIN SUCCESS!");
+        }
+        else
+        {
+            Console.WriteLine("LOGIN FAIL!");
+        }
     }
 
     public static void RegisterAnAccount(List<User> users)
@@ -100,8 +108,6 @@ class Program
             Console.WriteLine();
             Console.WriteLine("Passwords do not match, please try again...");
         }
-
-        return;
     }
 
 }// end of program class
