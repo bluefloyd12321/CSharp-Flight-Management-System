@@ -35,13 +35,13 @@ public class Flight
 	// Method to update the flight status
 	public void UpdateStatus(string status)
 	{
-		Status = status;
+		FlightStatus = status;
 	}
 
 	// Update the seats available for this flight.
 	public string UpdateSeats(int seatsBooked)
 	{
-		tooMany = SeatsAvailable - seatsBooked;
+		int tooMany = SeatsAvailable - seatsBooked;
 
 		// Checks if the seats booked would cause seats available to fall to 0 or below
 		if (tooMany <= 0)
