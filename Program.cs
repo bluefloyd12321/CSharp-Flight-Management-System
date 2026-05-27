@@ -10,19 +10,24 @@ class Program
     {
         Console.Title = "*** Flight Reservation App ***";
 
+        Console.WriteLine("******************************");
+        Console.WriteLine("*** Flight Reservation App ***");
+        Console.WriteLine("******************************");
+
         List<User> users = new List<User>();
-        User vee = new User("Vee McCabe", "Vee@gmail.com", "0224623917", "ADMIN");
-        User morgan = new User("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321", "PASSANGER");
+        User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
+        User morgan = new Admin("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321");
+        User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HeiryDog");
+        User katie = new Passanger("Katie", "Katie@gmail.com", "IDontCare");
         users.Add(vee);
         users.Add(morgan);
+        users.Add(damien);
+        users.Add(katie);
 
         int mainMenuOption;
         bool LOOP = true;
         do
         {
-            Console.WriteLine("******************************");
-            Console.WriteLine("*** Flight Reservation App ***");
-            Console.WriteLine("******************************");
             Console.WriteLine();
             Console.WriteLine("[ 1. Login to an account ]");
             Console.WriteLine("[ 2. Register an account ]");
@@ -45,7 +50,7 @@ class Program
                     Console.WriteLine("DEBUG MODE");
                     foreach (User display in users)
                     {
-                        Console.WriteLine($"{display.Username}, {display.Email}, {display.Password}, {display.UserType}");
+                        Console.WriteLine($"{display.Username}, {display.Email}, {display.Password}");
                     }
                     break;
                 default:
@@ -100,7 +105,7 @@ class Program
             Console.WriteLine();
             Console.WriteLine("You are now registered!");
             
-            User newUser = new User(registerName, registerEmail, registerPassword, "PASSANGER");
+            User newUser = new Passanger(registerName, registerEmail, registerPassword);
             users.Add(newUser);
         }
         else
