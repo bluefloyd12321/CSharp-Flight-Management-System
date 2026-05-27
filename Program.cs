@@ -9,7 +9,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Title = "*** Flight Reservation App ***";
+        Console.Title = "Flight Reservation App";
 
         Console.WriteLine("******************************");
         Console.WriteLine("*** Flight Reservation App ***");
@@ -19,7 +19,7 @@ class Program
         User a = new Admin("a", "DEBUG.ACCOUNT@gmail.com", "1");
         User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
         User morgan = new Admin("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321");
-        User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HeiryDog");
+        User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HairyDog");
         User katie = new Passanger("Katie", "Katie@gmail.com", "IDontCare");
         users.Add(a);
         users.Add(vee);

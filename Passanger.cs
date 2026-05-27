@@ -46,18 +46,64 @@ namespace FlightManagementSystem
                         Console.WriteLine("Logging out...");
                         break;
                     case 1:
-                        Console.WriteLine("TEMP FLIGHT INFO");
+                        PassangerFlightInfomation();
                         break;
                     case 2:
-                        Console.WriteLine("USER OPTIONS");
+                        Console.WriteLine("TEMP Account Options.");
                         break;
                     default:
                         Console.WriteLine("Unknown option, try again...");
                         break;
                 }
             } while (LOOP);
-        }
+        } // end of PassangerMainMenu
 
+        public static void PassangerFlightInfomation()
+        {
+            int mainMenuOption;
+            bool LOOP = true;
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("[ 1. Display all flights ]");
+                Console.WriteLine("[ 2. Display your booked flights ]");
+                Console.WriteLine("[ 3. Search specific flights ]");
+                Console.WriteLine("[ 4. Book a flight ]");
+                Console.WriteLine("[ 4. UnBook a flight ]");
+                Console.WriteLine("[ 0. Back ]");
+                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+                switch (mainMenuOption)
+                {
+                    case 0:
+                        LOOP = false;
+                        break;
+                    case 1:
+                        Console.WriteLine("Displaying all flights.");
+                        // DisplayAllFlights();
+                        break;
+                    case 2:
+                        Console.WriteLine("Displaying your booked flights.");
+                        // DisplayMyFlights();
+                        break;
+                    case 3:
+                        Console.WriteLine("Searching a specific flight.");
+                        // SearchSpecificFlight();
+                        break;
+                    case 4:
+                        Console.WriteLine("Booking a flight.");
+                        // BookFlight();
+                        break;
+                    case 5:
+                        Console.WriteLine("UnBooking a flight.");
+                        // UnBookFlight();
+                        break;
+                    default:
+                        Console.WriteLine("Unknown option, try again...");
+                        break;
+                }
+            } while (LOOP);
+        } // end of PassangerFlightInfomation
 
     }
 }
