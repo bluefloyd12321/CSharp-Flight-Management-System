@@ -11,21 +11,23 @@ class Program
     {
         Console.Title = "Flight Reservation App";
 
-        Console.WriteLine("******************************");
-        Console.WriteLine("*** Flight Reservation App ***");
-        Console.WriteLine("******************************");
-
         List<User> users = new List<User>();
         User a = new Admin("a", "DEBUG.ACCOUNT@gmail.com", "1");
+        User b = new Passanger("b", "DEBUG.ACCOUNT@gmail.com", "2");
+        users.Add(a);
+        users.Add(b);
         User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
         User morgan = new Admin("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321");
         User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HairyDog");
         User katie = new Passanger("Katie", "Katie@gmail.com", "IDontCare");
-        users.Add(a);
         users.Add(vee);
         users.Add(morgan);
         users.Add(damien);
         users.Add(katie);
+
+        Console.WriteLine("******************************");
+        Console.WriteLine("*** Flight Reservation App ***");
+        Console.WriteLine("******************************");
 
         int mainMenuOption;
         bool LOOP = true;
@@ -41,15 +43,21 @@ class Program
             {
                 case 0:
                     LOOP = false;
-                    break; 
+
+                    Console.Clear();
+                    Console.WriteLine("Exiting Flight Reservation App...");
+                    Console.WriteLine("Thank You!");
+                    break;
                 case 1:
+                    Console.Clear();
                     LoginToAccount(users);
                     break;
                 case 2:
+                    Console.Clear();
                     RegisterAnAccount(users);
                     break;
                 case 5:
-                    Console.WriteLine();
+                    Console.Clear();
                     Console.WriteLine("DEBUG MODE");
                     foreach (User display in users)
                     {
@@ -57,21 +65,15 @@ class Program
                     }
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("Unknown option, try again...");
                     break;
             }
-            Console.WriteLine();
         } while (LOOP);
-
-        Console.WriteLine();
-        Console.WriteLine("Exiting Flight App...");
-        Console.WriteLine("Thank You!");
-
     }// end of main
 
     public static void LoginToAccount(List<User> users)
     {
-        Console.WriteLine();
         Console.WriteLine("[ Logging Into An Account ]");
         Console.Write("Please enter your Full Name: ");
         string loginName = Console.ReadLine();
@@ -82,7 +84,9 @@ class Program
         User searchName = users.Find(searchName => searchName.Username.Equals(loginName, StringComparison.OrdinalIgnoreCase));
         if (loginPassword == searchName.Password)
         {
+            Console.Clear();
             Console.WriteLine("LOGIN SUCCESS!");
+            Console.WriteLine();
             if (searchName is Admin)
             {
                 Admin.AdminMainMenu();
@@ -98,13 +102,15 @@ class Program
         }
         else
         {
+            Console.Clear();
             Console.WriteLine("LOGIN FAIL!");
+            Console.WriteLine();
         }
     }
 
     public static void RegisterAnAccount(List<User> users)
     {
-        Console.WriteLine();
+        Console.Clear();
         Console.WriteLine("[ Registering An Account ]");
         Console.Write("Please enter your Full Name: ");
         string registerName = Console.ReadLine();
@@ -117,7 +123,7 @@ class Program
 
         if (registerPassword == confirmPassword)
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("You are now registered!");
             
             User newUser = new Passanger(registerName, registerEmail, registerPassword);
@@ -125,7 +131,7 @@ class Program
         }
         else
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("Passwords do not match, please try again...");
         }
     }

@@ -32,7 +32,6 @@ namespace FlightManagementSystem
             bool LOOP = true;
             do
             {
-                Console.WriteLine();
                 Console.WriteLine("[ 1. Flight information ]");
                 Console.WriteLine("[ 2. User infomation ]");
                 Console.WriteLine("[ 0. Logout of account ]");
@@ -42,17 +41,24 @@ namespace FlightManagementSystem
                 {
                     case 0:
                         LOOP = false;
-                        Console.WriteLine();
+                        Console.Clear();
                         Console.WriteLine("Logging out...");
                         break;
                     case 1:
+                        Console.Clear();
+                        Console.WriteLine("Admin Flight Options.");
+                        Console.WriteLine();
                         AdminFlightInfomation();
                         break;
                     case 2:
+                        Console.Clear();
                         Console.WriteLine("TEMP USER INFO");
+                        Console.WriteLine();
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Unknown option, try again...");
+                        Console.WriteLine();
                         break;
                 }
             } while (LOOP);
@@ -64,7 +70,6 @@ namespace FlightManagementSystem
             bool LOOP = true;
             do
             {
-                Console.WriteLine();
                 Console.WriteLine("[ 1. Display all flights ]");
                 Console.WriteLine("[ 2. Add a new flight ]");
                 Console.WriteLine("[ 3. Remove a flight ]");
@@ -76,25 +81,38 @@ namespace FlightManagementSystem
                 {
                     case 0:
                         LOOP = false;
+                        Console.Clear();
+                        Console.WriteLine("Going back...");
+                        Console.WriteLine();
                         break;
                     case 1:
+                        Console.Clear();
                         Console.WriteLine("Displaying all flights.");
+                        Console.WriteLine();
                         // DisplayAllFlights();
                         break;
                     case 2:
+                        Console.Clear();
                         Console.WriteLine("Adding a new flight.");
+                        Console.WriteLine();
                         // AddNewFlight();
                         break;
                     case 3:
+                        Console.Clear();
                         Console.WriteLine("Removeing a flight.");
+                        Console.WriteLine();
                         // RemoveAFlight();
                         break;
                     case 4:
+                        Console.Clear();
                         Console.WriteLine("Editing flight infomation.");
+                        Console.WriteLine();
                         // EditFlightInfo();
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Unknown option, try again...");
+                        Console.WriteLine();
                         break;
                 }
             } while (LOOP);
