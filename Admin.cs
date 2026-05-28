@@ -52,8 +52,9 @@ namespace FlightManagementSystem
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("TEMP User management...");
+                        Console.WriteLine("User management...");
                         Console.WriteLine();
+                        AdminUserManagement();
                         break;
                     default:
                         Console.Clear();
@@ -117,6 +118,61 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of FlightInfomation
+
+
+        public static void AdminUserManagement()
+        {
+            int mainMenuOption;
+            bool LOOP = true;
+            do
+            {
+                Console.WriteLine("[ 1. Display all users ]");
+                Console.WriteLine("[ 2. Add a new user ]");
+                Console.WriteLine("[ 3. Remove a user ]");
+                Console.WriteLine("[ 4. Update a users details ]");
+                Console.WriteLine("[ 0. Back ]");
+                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+                switch (mainMenuOption)
+                {
+                    case 0:
+                        LOOP = false;
+                        Console.Clear();
+                        Console.WriteLine("Going back...");
+                        Console.WriteLine();
+                        break;
+                    case 1:
+                        Console.Clear();
+                        Console.WriteLine("Displaying all users...");
+                        Console.WriteLine();
+                        // DisplayAllUsers();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        Console.WriteLine("Adding a new user...");
+                        Console.WriteLine();
+                        // AddNewUser();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        Console.WriteLine("Removeing a user...");
+                        Console.WriteLine();
+                        // RemoveAUser();
+                        break;
+                    case 4:
+                        Console.Clear();
+                        Console.WriteLine("Editing a users details...");
+                        Console.WriteLine();
+                        // EditAUsersDetails();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Unknown option, try again...");
+                        Console.WriteLine();
+                        break;
+                }
+            } while (LOOP);
+        } // end of AdminUserManagement
 
     }
 }
