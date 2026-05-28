@@ -32,8 +32,8 @@ namespace FlightManagementSystem
             bool LOOP = true;
             do
             {
-                Console.WriteLine("[ 1. Flight information ]");
-                Console.WriteLine("[ 2. User infomation ]");
+                Console.WriteLine("[ 1. Flight Management ]");
+                Console.WriteLine("[ 2. User Management ]");
                 Console.WriteLine("[ 0. Logout of account ]");
                 mainMenuOption = Convert.ToInt32(Console.ReadLine());
 
@@ -46,13 +46,13 @@ namespace FlightManagementSystem
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Admin Flight Options.");
+                        Console.WriteLine("Admin flight management...");
                         Console.WriteLine();
                         AdminFlightInfomation();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("TEMP USER INFO");
+                        Console.WriteLine("TEMP User management...");
                         Console.WriteLine();
                         break;
                     default:
@@ -87,25 +87,25 @@ namespace FlightManagementSystem
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Displaying all flights.");
+                        Console.WriteLine("Displaying all flights...");
                         Console.WriteLine();
                         // DisplayAllFlights();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Adding a new flight.");
+                        Console.WriteLine("Adding a new flight...");
                         Console.WriteLine();
                         // AddNewFlight();
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Removeing a flight.");
+                        Console.WriteLine("Removeing a flight...");
                         Console.WriteLine();
                         // RemoveAFlight();
                         break;
                     case 4:
                         Console.Clear();
-                        Console.WriteLine("Editing flight infomation.");
+                        Console.WriteLine("Editing flight infomation...");
                         Console.WriteLine();
                         // EditFlightInfo();
                         break;

@@ -46,13 +46,13 @@ namespace FlightManagementSystem
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Flight Infomation.");
+                        Console.WriteLine("Flight Infomation...");
                         Console.WriteLine();
                         PassangerFlightInfomationMenu();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Account Options.");
+                        Console.WriteLine("Account Options...");
                         Console.WriteLine();
                         PassangerAccountOptionsMenu();
                         break;
@@ -89,31 +89,31 @@ namespace FlightManagementSystem
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Displaying all flights.");
+                        Console.WriteLine("Displaying all flights...");
                         Console.WriteLine();
                         // DisplayAllFlights();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Displaying your booked flights.");
+                        Console.WriteLine("Displaying your booked flights...");
                         Console.WriteLine();
                         // DisplayMyFlights();
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Searching a specific flight.");
+                        Console.WriteLine("Searching a specific flight...");
                         Console.WriteLine();
                         // SearchSpecificFlight();
                         break;
                     case 4:
                         Console.Clear();
-                        Console.WriteLine("Booking a flight.");
+                        Console.WriteLine("Booking a flight...");
                         Console.WriteLine();
                         // BookFlight();
                         break;
                     case 5:
                         Console.Clear();
-                        Console.WriteLine("UnBooking a flight.");
+                        Console.WriteLine("UnBooking a flight...");
                         Console.WriteLine();
                         // UnBookFlight();
                         break;
@@ -148,19 +148,19 @@ namespace FlightManagementSystem
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Displaying your account details.");
+                        Console.WriteLine("Displaying your account details...");
                         Console.WriteLine();
                         // DisplayMyAccountDetails();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Updating your account details.");
+                        Console.WriteLine("Updating your account details...");
                         Console.WriteLine();
                         // UpdateThisAccountDetails();
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Deleting your account.");
+                        Console.WriteLine("Deleting your account...");
                         Console.WriteLine();
                         // DeleteThisPassangerAccount();
                         break;
