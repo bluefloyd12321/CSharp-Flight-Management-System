@@ -12,10 +12,10 @@ class Program
         Console.Title = "Flight Reservation App";
 
         List<User> users = new List<User>();
-        User a = new Admin("a", "DEBUG.ACCOUNT@gmail.com", "1");
-        User b = new Passanger("b", "DEBUG.ACCOUNT@gmail.com", "2");
-        users.Add(a);
-        users.Add(b);
+        User debugAdmin = new Admin("admin", "DEBUG.ACCOUNT@gmail.com", "password");
+        User debugPassanger = new Passanger("user", "DEBUG.ACCOUNT@gmail.com", "password");
+        users.Add(debugAdmin);
+        users.Add(debugPassanger);
         User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
         User morgan = new Admin("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321");
         User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HairyDog");
@@ -97,7 +97,7 @@ class Program
             }
             else
             {
-                Console.WriteLine("USER ACCOUNT NOT FOUND.");
+                Console.WriteLine("USER ACCOUNT TYPE NOT FOUND.");
             }
         }
         else
