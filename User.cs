@@ -22,6 +22,7 @@ namespace FlightManagementSystem
         }
         public User(string username, string email, string password)
         {
+			// Just sets the properties nothing interesting here.....
             Username = username;
             Email = email;
             Password = password;

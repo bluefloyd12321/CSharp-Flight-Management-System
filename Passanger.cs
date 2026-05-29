@@ -8,19 +8,20 @@ namespace FlightManagementSystem
     {
         // fields
 
-
+		// So many fields here....... - Morgan
 
         // properties
 
-
+		// Not seeing many properties here...... - Morgan
 
         // constructors
         public Passanger()
         {
-
+			// This constructor does sooo muchhhh - Morgan
         }
         public Passanger(string username, string email, string password)
         {
+			// Just sets properties, nothing fancy
             Username = username;
             Email = email;
             Password = password;
@@ -28,10 +29,12 @@ namespace FlightManagementSystem
         // methods
         public static void PassangerMainMenu()
         {
+			// Main loop
             int mainMenuOption;
             bool LOOP = true;
             do
             {
+				// Display menu options to the user
                 Console.WriteLine("[ 1. Flight information ]");
                 Console.WriteLine("[ 2. Account options ]");
                 Console.WriteLine("[ 0. Logout of account ]");
@@ -40,23 +43,27 @@ namespace FlightManagementSystem
                 switch (mainMenuOption)
                 {
                     case 0:
+						// Logs the user out
                         LOOP = false;
                         Console.Clear();
                         Console.WriteLine("Logging out...");
                         break;
                     case 1:
+						// Sends passengers to the flight info menu
                         Console.Clear();
                         Console.WriteLine("Flight Infomation...");
                         Console.WriteLine();
                         PassangerFlightInfomationMenu();
                         break;
                     case 2:
+						// Sends user to passenger account options
                         Console.Clear();
                         Console.WriteLine("Account Options...");
                         Console.WriteLine();
                         PassangerAccountOptionsMenu();
                         break;
                     default:
+						// Default for invalid options
                         Console.Clear();
                         Console.WriteLine("Unknown option, try again...");
                         Console.WriteLine();
@@ -71,6 +78,7 @@ namespace FlightManagementSystem
             bool LOOP = true;
             do
             {
+				// Display the menu options
                 Console.WriteLine("[ 1. Display all flights ]");
                 Console.WriteLine("[ 2. Display your booked flights ]");
                 Console.WriteLine("[ 3. Search specific flights ]");
@@ -82,42 +90,49 @@ namespace FlightManagementSystem
                 switch (mainMenuOption)
                 {
                     case 0:
+						// Goes back
                         LOOP = false;
                         Console.Clear();
                         Console.WriteLine("Going back...");
                         Console.WriteLine();
                         break;
                     case 1:
+						// Displays all available flights
                         Console.Clear();
                         Console.WriteLine("Displaying all flights...");
                         Console.WriteLine();
                         // DisplayAllFlights();
                         break;
                     case 2:
+						// Display booked flights
                         Console.Clear();
                         Console.WriteLine("Displaying your booked flights...");
                         Console.WriteLine();
                         // DisplayMyFlights();
                         break;
                     case 3:
+						// Search for flight
                         Console.Clear();
                         Console.WriteLine("Searching a specific flight...");
                         Console.WriteLine();
                         // SearchSpecificFlight();
                         break;
                     case 4:
+						// Books a flight
                         Console.Clear();
                         Console.WriteLine("Booking a flight...");
                         Console.WriteLine();
                         // BookFlight();
                         break;
                     case 5:
+						// Unbooks flight
                         Console.Clear();
                         Console.WriteLine("UnBooking a flight...");
                         Console.WriteLine();
                         // UnBookFlight();
                         break;
                     default:
+						// Default for invalid options
                         Console.Clear();
                         Console.WriteLine("Unknown option, try again...");
                         Console.WriteLine();
