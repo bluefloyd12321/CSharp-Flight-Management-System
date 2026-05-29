@@ -57,4 +57,16 @@ public class Flight
 			return "The seats have been booked";
 		}
 	}
+
+
+	public void DisplayFlightDetails() 
+	{
+		Console.WriteLine(FlightNumber);
+		Console.WriteLine(GateNumber);
+		Console.WriteLine(flightDate);
+		Console.WriteLine(FlightDestination);
+		Console.WriteLine(FlightOrigin);
+		Console.WriteLine(FlightStatus);
+		Console.WriteLine(SeatsAvailable);
+	}
 }

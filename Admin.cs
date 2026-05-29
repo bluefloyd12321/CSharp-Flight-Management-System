@@ -8,11 +8,7 @@ namespace FlightManagementSystem
     {
         // fields
 
-
-
         // properties
-
-
 
         // constructors
         public Admin()
