@@ -8,7 +8,7 @@ namespace FlightManagementSystem
     {
         // fields
         private string username, email, password;
-
+        private List<Flight> bookedFlights = new List<Flight>();
 
         // properties
         public string Username { get { return username; } set { username = value; } }
@@ -28,6 +28,19 @@ namespace FlightManagementSystem
             Password = password;
         }
         // methods
-        
+
+        public void AddFlightToList(Flight flight)
+        {
+            Console.WriteLine("Adding flights....");
+            bookedFlights.Add(flight);
+        }
+
+        public void GetBookedFlights()
+        {
+            foreach (Flight flight in bookedFlights)
+            {
+                flight.DisplayFlightDetails();
+            }
+        }
     }
 }

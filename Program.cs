@@ -8,8 +8,11 @@ namespace FlightManagementSystem;
 
 class Program
 {
+    // Creates a global booking class that can be accessed anywhere through Program.flightBookings
     public static Booking flightBookings = new Booking();
-    public static User currentUser;
+    // Creates a variable that holds the current user so we can manipulate the current user information from anywhere
+    // Is it the most elegant or safe? Probably not. But it works so ¯\_(ツ)_/¯
+    public static User currentUser = null;
 
     static void Main(string[] args)
     {
@@ -32,6 +35,7 @@ class Program
         users.Add(katie);
 
         // Display app title to user
+        Console.Clear();
         Console.WriteLine("******************************");
         Console.WriteLine("*** Flight Reservation App ***");
         Console.WriteLine("******************************");
@@ -46,6 +50,7 @@ class Program
             Console.WriteLine("[ 1. Register an account ]");
             Console.WriteLine("[ 2. Login to an account ]");
             Console.WriteLine("[ 0. EXIT ]");
+            
             mainMenuOption = Convert.ToInt32(Console.ReadLine());
 
             switch (mainMenuOption)
@@ -94,7 +99,14 @@ class Program
         Console.Write("Please enter your Full Name: ");
         string loginName = Console.ReadLine();
         Console.Write("Please enter your Password: ");
-        string loginPassword = Console.ReadLine();
+        string loginPassword = null;
+        while (true)
+        {
+            var key = System.Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter)
+                break;
+            loginPassword += key.KeyChar;
+        }
         Console.WriteLine();
 
         // Checks for the user in the users list
@@ -111,11 +123,13 @@ class Program
                 {
                     currentUser = searchName;
                     Admin.AdminMainMenu();
+                    currentUser = null;
                 }
                 else if (searchName is Passanger)
                 {
                     currentUser = searchName;
                     Passanger.PassangerMainMenu();
+                    currentUser = null;
 
                 }
                 else
@@ -149,9 +163,23 @@ class Program
         Console.Write("Please enter your Email: ");
         string registerEmail = Console.ReadLine();
         Console.Write("Please enter your Password: ");
-        string registerPassword = Console.ReadLine();
+        string registerPassword = null;
+        while (true)
+        {
+            var key = System.Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter)
+                break;
+            registerPassword += key.KeyChar;
+        }
         Console.Write("Please confirm your Password: ");
-        string confirmPassword = Console.ReadLine();
+        string confirmPassword = null;
+        while (true)
+        {
+            var key = System.Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter)
+                break;
+            confirmPassword += key.KeyChar;
+        }
 
         // Check the inputted passwords match
         if (registerPassword == confirmPassword)

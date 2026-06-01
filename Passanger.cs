@@ -26,6 +26,7 @@ namespace FlightManagementSystem
             Email = email;
             Password = password;
         }
+
         // methods
         public static void PassangerMainMenu()
         {
@@ -108,7 +109,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Displaying your booked flights...");
                         Console.WriteLine();
-                        // DisplayMyFlights();
+                        Program.flightBookings.DisplayMyFlights();
                         break;
                     case 3:
                         // Search for flight
@@ -122,7 +123,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Booking a flight...");
                         Console.WriteLine();
-                        // BookFlight();
+                        Program.flightBookings.BookFlight();
                         break;
                     case 5:
                         // Unbooks flight

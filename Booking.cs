@@ -17,16 +17,32 @@ public class Booking
         {
             flight.DisplayFlightDetails();
         }
-        Console.WriteLine(Program.currentUser.Username);
+        if (Program.currentUser is Admin)
+        {
+            Console.WriteLine("Is Admin");
+        }
+        else {
+            Console.WriteLine("Is passenger");
+        }
     }
 
     // User based methods
 
-    public void DisplayMyFlights() { }
+    public void DisplayMyFlights() 
+    { 
+        System.Console.WriteLine("Displaying flights....");
+        Program.currentUser.GetBookedFlights();
+    }
 
     public void SearchSpecificFlight() { }
 
-    public void BookFlight() { }
+    public void BookFlight() 
+    { 
+        int flightNum = 420;
+        Flight searchFlight = flights.Find(searchFlight => searchFlight.FlightNumber.Equals(flightNum));
+        Program.currentUser.AddFlightToList(searchFlight);
+        Console.WriteLine("success");
+    }
 
     public void UnBookFlight() { }
 
