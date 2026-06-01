@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace FlightManagementSystem
@@ -21,6 +22,7 @@ namespace FlightManagementSystem
             Email = email;
             Password = password;
         }
+
         // methods
         public static void AdminMainMenu()
         {
@@ -86,13 +88,13 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Displaying all flights...");
                         Console.WriteLine();
-                        // DisplayAllFlights();
+                        Program.flightBookings.DisplayAllFlights();
                         break;
                     case 2:
                         Console.Clear();
                         Console.WriteLine("Adding a new flight...");
                         Console.WriteLine();
-                        // AddNewFlight();
+                        Program.flightBookings.AddNewFlight();
                         break;
                     case 3:
                         Console.Clear();

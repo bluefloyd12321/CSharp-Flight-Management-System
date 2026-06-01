@@ -3,7 +3,7 @@
 public class Booking
 {
     // Fields
-    private List<Flight> flights;
+    private List<Flight> flights = new List<Flight>();
 
     // Properties
 
@@ -13,10 +13,11 @@ public class Booking
     public void DisplayAllFlights()
     {
         // Loops through each flight in the list and displays the details
-        foreach (Flight plane in flights)
+        foreach (Flight flight in flights)
         {
-            plane.DisplayFlightDetails();
+            flight.DisplayFlightDetails();
         }
+        Console.WriteLine(Program.currentUser.Username);
     }
 
     // User based methods
@@ -33,8 +34,8 @@ public class Booking
 
     public void AddNewFlight()
     {
-        DateTime testDate = new DateTime(2001, 9, 11);
-        Flight testFlight = new Flight(testDate, 420, "Your mums house", "My house", 69, "In Flight", 1);
+        DateTime testDate = new DateTime(2026, 6, 5);
+        Flight testFlight = new Flight(testDate, 420, "Wellington", "Auckland", 12, "On Time", 10);
         flights.Add(testFlight);
     }
 

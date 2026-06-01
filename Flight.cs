@@ -61,12 +61,12 @@ public class Flight
 
 	public void DisplayFlightDetails() 
 	{
-		Console.WriteLine(FlightNumber);
-		Console.WriteLine(GateNumber);
-		Console.WriteLine(flightDate);
-		Console.WriteLine(FlightDestination);
-		Console.WriteLine(FlightOrigin);
-		Console.WriteLine(FlightStatus);
-		Console.WriteLine(SeatsAvailable);
+		Console.WriteLine($"Flight Number:\t{FlightNumber}");
+		Console.WriteLine($"Gate Number:\t{GateNumber}");
+		Console.WriteLine($"Flight Date:\t{FlightDate}");
+		Console.WriteLine($"Flight Destination:\t{FlightDestination}");
+		Console.WriteLine($"Flight Origin:\t{FlightOrigin}");
+		Console.WriteLine($"Flight Status:\t{FlightStatus}");
+		Console.WriteLine($"Seats Available:\t{SeatsAvailable}\n");
 	}
 }
