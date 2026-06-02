@@ -14,13 +14,14 @@ class Program
     // Is it the most elegant or safe? Probably not. But it works so ¯\_(ツ)_/¯
     public static User currentUser = null;
 
+    public static List<User> users = new List<User>();
+
     static void Main(string[] args)
     {
         // Sets window title
         Console.Title = "Flight Reservation App";
 
         // Defines a list for storing users and some test users. Will delete those later
-        List<User> users = new List<User>();
         User debugAdmin = new Admin("admin", "DEBUG.ACCOUNT@gmail.com", "password");
         User debugPassanger = new Passanger("user", "DEBUG.ACCOUNT@gmail.com", "password");
         users.Add(debugAdmin);

@@ -30,14 +30,16 @@ public class Booking
 
     // User based methods
 
+    // Just calls user.GetBookedFlights and displays any flights in the bookedFlights list in user.cs
     public void DisplayMyFlights() 
     { 
-        System.Console.WriteLine("Displaying flights....");
+        Console.WriteLine("Displaying flights....");
         Program.currentUser.GetBookedFlights();
     }
 
     public void SearchSpecificFlight() { }
 
+    // Loops 
     public void BookFlight() 
     { 
         DisplayAllFlights();
@@ -106,7 +108,13 @@ public class Booking
         flights.Add(newFlight);
     }
 
-    public void RemoveAFlight() { }
+    public void RemoveAFlight() 
+    {
+        // 
+    }
 
-    public void EditFlightInfo() { }
+    public void EditFlightInfo() 
+    { 
+        // 
+    }
 }

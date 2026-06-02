@@ -58,6 +58,8 @@ public class Flight
 		}
 	}
 
+	public string 
+
 
 	public void DisplayFlightDetails() 
 	{
