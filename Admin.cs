@@ -143,7 +143,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Displaying all users...");
                         Console.WriteLine();
-                        // DisplayAllUsers();
+                        DisplayAllUsers();
                         break;
                     case 2:
                         Console.Clear();
@@ -171,6 +171,13 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of AdminUserManagement
-
-    }
+        public static void DisplayAllUsers()
+        {
+            for (int i = 0; i < Program.users.Count; i++)
+            {
+                Console.WriteLine($"User in index {i + 1} has: \n\t   Username: \t{Program.users[i].Username}\n\t      Email: \t{Program.users[i].Email}\n\t   Password: \t{Program.users[i].Password}");
+                Console.WriteLine();
+            }
+        }
+    }// end of class
 }
