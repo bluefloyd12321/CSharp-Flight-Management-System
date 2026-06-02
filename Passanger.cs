@@ -223,15 +223,15 @@ namespace FlightManagementSystem
             string newEmail = Console.ReadLine();
 
             Console.Write($"Your NEW Password is: ");
-            string newPassword = null;  while (true)    {   ConsoleKeyInfo ck = Console.ReadKey(true);  if (ck.Key != ConsoleKey.Enter)     {   if (ck.Key != ConsoleKey.Backspace)     {   newPassword += ck.KeyChar.ToString();   Console.Write("*");     }   else    {   Console.Write("\b \b");     }       }   else    {   Console.WriteLine();    break;  }   }
+            string newPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { newPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            Console.Write($"Confirm Your NEW Password: ");  
-            string confirmNewPassword = null;   while (true)    {   ConsoleKeyInfo ck = Console.ReadKey(true);  if (ck.Key != ConsoleKey.Enter)     {   if (ck.Key != ConsoleKey.Backspace)     {   confirmNewPassword += ck.KeyChar.ToString();    Console.Write("*");     }   else    {   Console.Write("\b \b");     }       }   else    {   Console.WriteLine();    break;  }   }
+            Console.Write($"Confirm Your NEW Password: ");
+            string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
             if (newPassword == confirmNewPassword)
             {
                 Console.Clear();
-                Console.WriteLine("You are now registered!");
+                Console.WriteLine("Details are now updated!");
                 Program.currentUser.Username = newUsername;
                 Program.currentUser.Email = newEmail;
                 Program.currentUser.Password = newPassword;
