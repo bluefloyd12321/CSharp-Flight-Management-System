@@ -102,10 +102,30 @@ class Program
         string loginPassword = null;
         while (true)
         {
-            var key = System.Console.ReadKey(true);
-            if (key.Key == ConsoleKey.Enter)
+            //Store the keys entered by the user, and do not display characters in the entered position
+            ConsoleKeyInfo ck = Console.ReadKey(true);
+
+            //Determine whether the user pressed the Enter key
+            if (ck.Key != ConsoleKey.Enter)
+            {
+                if (ck.Key != ConsoleKey.Backspace)
+                {
+                    //Store the characters entered by the user into a string
+                    loginPassword += ck.KeyChar.ToString();
+                    //Replace the characters entered by the user with *
+                    Console.Write("*");
+                }
+                else
+                {
+                    //Delete wrong characters
+                    Console.Write("\b \b");
+                }
+            }
+            else
+            {
+                Console.WriteLine();
                 break;
-            loginPassword += key.KeyChar;
+            }
         }
         Console.WriteLine();
 
@@ -166,19 +186,59 @@ class Program
         string registerPassword = null;
         while (true)
         {
-            var key = System.Console.ReadKey(true);
-            if (key.Key == ConsoleKey.Enter)
+            //Store the keys entered by the user, and do not display characters in the entered position
+            ConsoleKeyInfo ck = Console.ReadKey(true);
+
+            //Determine whether the user pressed the Enter key
+            if (ck.Key != ConsoleKey.Enter)
+            {
+                if (ck.Key != ConsoleKey.Backspace)
+                {
+                    //Store the characters entered by the user into a string
+                    registerPassword += ck.KeyChar.ToString();
+                    //Replace the characters entered by the user with *
+                    Console.Write("*");
+                }
+                else
+                {
+                    //Delete wrong characters
+                    Console.Write("\b \b");
+                }
+            }
+            else
+            {
+                Console.WriteLine();
                 break;
-            registerPassword += key.KeyChar;
+            }
         }
         Console.Write("Please confirm your Password: ");
         string confirmPassword = null;
         while (true)
         {
-            var key = System.Console.ReadKey(true);
-            if (key.Key == ConsoleKey.Enter)
+            //Store the keys entered by the user, and do not display characters in the entered position
+            ConsoleKeyInfo ck = Console.ReadKey(true);
+
+            //Determine whether the user pressed the Enter key
+            if (ck.Key != ConsoleKey.Enter)
+            {
+                if (ck.Key != ConsoleKey.Backspace)
+                {
+                    //Store the characters entered by the user into a string
+                    confirmPassword += ck.KeyChar.ToString();
+                    //Replace the characters entered by the user with *
+                    Console.Write("*");
+                }
+                else
+                {
+                    //Delete wrong characters
+                    Console.Write("\b \b");
+                }
+            }
+            else
+            {
+                Console.WriteLine();
                 break;
-            confirmPassword += key.KeyChar;
+            }
         }
 
         // Check the inputted passwords match
