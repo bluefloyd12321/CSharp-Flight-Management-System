@@ -37,6 +37,8 @@ class Program // start of program
         users.Add(damien);
         users.Add(katie);
 
+        
+
         // Display app title to user
         Console.Clear();
         Console.WriteLine("******************************");
@@ -84,6 +86,9 @@ class Program // start of program
                     {
                         Console.WriteLine($"{display.Username}, {display.Email}, {display.Password}");
                     }
+                    break;
+                case 9:
+                    User.RR();
                     break;
                 default:
                     // Default case if user inputs an invalid option

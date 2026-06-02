@@ -42,5 +42,11 @@ namespace FlightManagementSystem
                 flight.DisplayFlightDetails();
             }
         }
+        public static void RR()
+        {
+            Console.Clear();                                                                                                                                             Console.WriteLine("Never gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you");
+            Console.WriteLine();
+            return;
+        }
     }
 }
