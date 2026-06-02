@@ -166,19 +166,19 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Displaying your account details...");
                         Console.WriteLine();
-                        // DisplayMyAccountDetails();
+                        DisplayMyAccountDetails();
                         break;
                     case 2:
                         Console.Clear();
                         Console.WriteLine("Updating your account details...");
                         Console.WriteLine();
-                        // UpdateThisAccountDetails();
+                        UpdateThisAccountDetails();
                         break;
                     case 3:
                         Console.Clear();
                         Console.WriteLine("Deleting your account...");
                         Console.WriteLine();
-                        // DeleteThisPassangerAccount();
+                        DeleteThisPassangerAccount();
                         break;
                     default:
                         Console.Clear();
@@ -188,7 +188,44 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of PassangerAccountMenu
+        public static void DisplayMyAccountDetails()
+        {
+            Console.WriteLine($"Your Username is: \t{Program.currentUser.Username}");
+            Console.WriteLine($"Your Email is: \t\t{Program.currentUser.Email}");
+            Console.WriteLine($"Your Password is: \t{Program.currentUser.Password}");
+            Console.WriteLine();
+        }
+        public static void UpdateThisAccountDetails()
+        {
+            Console.Write($"Your NEW Username is: ");
+            string newUsername = Console.ReadLine(); 
+            Console.Write($"Your NEW Email is: ");
+            string newEmail = Console.ReadLine();
+
+            Console.Write($"Your NEW Password is: ");
+            string newPassword = null;  while (true)    {   ConsoleKeyInfo ck = Console.ReadKey(true);  if (ck.Key != ConsoleKey.Enter)     {   if (ck.Key != ConsoleKey.Backspace)     {   newPassword += ck.KeyChar.ToString();   Console.Write("*");     }   else    {   Console.Write("\b \b");     }       }   else    {   Console.WriteLine();    break;  }   }
+
+            Console.Write($"Confirm Your NEW Password: ");  
+            string confirmNewPassword = null;   while (true)    {   ConsoleKeyInfo ck = Console.ReadKey(true);  if (ck.Key != ConsoleKey.Enter)     {   if (ck.Key != ConsoleKey.Backspace)     {   confirmNewPassword += ck.KeyChar.ToString();    Console.Write("*");     }   else    {   Console.Write("\b \b");     }       }   else    {   Console.WriteLine();    break;  }   }
+
+            if (newPassword == confirmNewPassword)
+            {
+                Console.Clear();
+                Console.WriteLine("You are now registered!");
+                Program.currentUser.Username = newUsername;
+                Program.currentUser.Email = newEmail;
+                Program.currentUser.Password = newPassword;
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
+
+        }
+        
+
     }
-
-
 }

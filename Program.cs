@@ -163,7 +163,6 @@ class Program
             {
                 Console.Clear();
                 Console.WriteLine("LOGIN FAIL!");
-                Console.WriteLine();
             }
         }
         else
