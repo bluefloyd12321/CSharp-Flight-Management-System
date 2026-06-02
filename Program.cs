@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FlightManagementSystem;
 
-class Program
+class Program // start of program
 {
     // Creates a global booking class that can be accessed anywhere through Program.flightBookings
     public static Booking flightBookings = new Booking();
