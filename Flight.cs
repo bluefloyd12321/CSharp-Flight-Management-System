@@ -44,17 +44,17 @@ public class Flight
 		int tooMany = SeatsAvailable - seatsBooked;
 
 		// Checks if the seats booked would cause seats available to fall to 0 or below
-		if (tooMany <= 0)
+		if (tooMany < 0)
 		{
 			// If so, tell the user they can't book that many
-			return "Sorry, there are no more seats left.";
+			return "Seats not booked";
 		}
 
 		else 
 		{
 			// If not, update the amount of seats left and say the seats were booked
 			SeatsAvailable -= seatsBooked;
-			return "The seats have been booked";
+			return "Seats booked";
 		}
 	}
 

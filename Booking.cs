@@ -40,10 +40,33 @@ public class Booking
 
     public void BookFlight() 
     { 
-        int flightNum = 420;
-        Flight searchFlight = flights.Find(searchFlight => searchFlight.FlightNumber.Equals(flightNum));
-        Program.currentUser.AddFlightToList(searchFlight);
-        Console.WriteLine("success");
+        DisplayAllFlights();
+        
+        Console.Write("Please select type a flight number to book a seat: ");
+        int flightNum = Convert.ToInt32(Console.ReadLine());
+
+        Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
+        if (flight != null) 
+        {
+            Console.Write("How many seats are you booking? ");
+            int seatsBooked = Convert.ToInt32(Console.ReadLine());
+
+            if (flight.UpdateSeats(seatsBooked) == "Seats booked")
+            {
+                Program.currentUser.AddFlightToList(flight);
+                Console.WriteLine("Flight booked successfully");
+            }
+            else
+            {
+                Console.WriteLine("Flight could not be booked");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Flight not found");
+            Console.WriteLine(flight);
+        }
+
     }
 
     public void UnBookFlight() { }
