@@ -52,24 +52,33 @@ public class Booking
 
     public void AddNewFlight()
     {
+        // Prompts the user for all the flight details
         DateTime flightDate = default;
         Console.Write("Please enter the flight Date & Time (dd/mm/yyyy hh:mm): ");
         if (DateTime.TryParse(Console.ReadLine(), out DateTime potentialDate))
         {
             flightDate = potentialDate;
         }
-        Console.Write("Please enter the flight Nuber: ");
+
+        Console.Write("Please enter the flight number: ");
         int flightNum = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Please enter the flight Destination: ");
+
+        Console.Write("Please enter the flight destination: ");
         string flightDest = Console.ReadLine();
-        Console.Write("Please enter the flight Origin: ");
+
+        Console.Write("Please enter the flight origin: ");
         string flightOrigin = Console.ReadLine();
-        Console.Write("Please enter the flight Gate Number: ");
+
+        Console.Write("Please enter the flight gate Number: ");
         int gateNum = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Please enter the flight Status: ");
+
+        Console.Write("Please enter the flight status: ");
         string flightStat = Console.ReadLine();
-        Console.Write("Please enter the flight Seats Available: ");
+
+        Console.Write("Please enter the flight seats available: ");
         int seatsAvailable = Convert.ToInt32(Console.ReadLine());
+
+        // Adds flight to the list
         Flight newFlight = new Flight(flightDate, flightNum, flightDest, flightOrigin, gateNum, flightStat, seatsAvailable);
         flights.Add(newFlight);
     }
