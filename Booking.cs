@@ -1,4 +1,6 @@
-﻿namespace FlightManagementSystem;
+﻿using System.ComponentModel;
+
+namespace FlightManagementSystem;
 
 public class Booking
 {
@@ -50,9 +52,26 @@ public class Booking
 
     public void AddNewFlight()
     {
-        DateTime testDate = new DateTime(2026, 6, 5);
-        Flight testFlight = new Flight(testDate, 420, "Wellington", "Auckland", 12, "On Time", 10);
-        flights.Add(testFlight);
+        DateTime flightDate = default;
+        Console.Write("Please enter the flight Date & Time (dd/mm/yyyy hh:mm): ");
+        if (DateTime.TryParse(Console.ReadLine(), out DateTime potentialDate))
+        {
+            flightDate = potentialDate;
+        }
+        Console.Write("Please enter the flight Nuber: ");
+        int flightNum = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Please enter the flight Destination: ");
+        string flightDest = Console.ReadLine();
+        Console.Write("Please enter the flight Origin: ");
+        string flightOrigin = Console.ReadLine();
+        Console.Write("Please enter the flight Gate Number: ");
+        int gateNum = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Please enter the flight Status: ");
+        string flightStat = Console.ReadLine();
+        Console.Write("Please enter the flight Seats Available: ");
+        int seatsAvailable = Convert.ToInt32(Console.ReadLine());
+        Flight newFlight = new Flight(flightDate, flightNum, flightDest, flightOrigin, gateNum, flightStat, seatsAvailable);
+        flights.Add(newFlight);
     }
 
     public void RemoveAFlight() { }
