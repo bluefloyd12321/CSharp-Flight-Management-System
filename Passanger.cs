@@ -62,6 +62,10 @@ namespace FlightManagementSystem
                         Console.WriteLine("Account Options...");
                         Console.WriteLine();
                         PassangerAccountOptionsMenu();
+                        if (Program.MegaExit = true)
+                        {
+                            LOOP = false;
+                        }
                         break;
                     default:
                         // Default for invalid options
@@ -176,9 +180,25 @@ namespace FlightManagementSystem
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Deleting your account...");
-                        Console.WriteLine();
-                        DeleteThisPassangerAccount();
+                        Console.WriteLine("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
+                        Console.WriteLine("( Yes / No )");
+                        string accountDeleteConfirmation = "No";
+                        accountDeleteConfirmation = Console.ReadLine();
+                        if (accountDeleteConfirmation == "Yes")
+                        {
+                            Console.WriteLine("Deleting your account...");
+                            
+                            DeleteThisPassangerAccount();
+                            if (Program.MegaExit = true)
+                            {
+                                LOOP = false;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Not deleting your account...");
+                            Console.WriteLine();
+                        }
                         break;
                     default:
                         Console.Clear();
@@ -225,7 +245,13 @@ namespace FlightManagementSystem
             }
 
         }
-        
+
+        public static void DeleteThisPassangerAccount()
+        {
+            User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(Program.currentUser.Username, StringComparison.OrdinalIgnoreCase));
+            Program.users.Remove(deleteUser);
+            Program.MegaExit = true;
+        }
 
     }
 }

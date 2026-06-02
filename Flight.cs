@@ -58,9 +58,6 @@ public class Flight
 		}
 	}
 
-	public string 
-
-
 	public void DisplayFlightDetails() 
 	{
 		Console.WriteLine($"Flight Number:\t{FlightNumber}");

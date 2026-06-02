@@ -16,14 +16,16 @@ class Program
 
     public static List<User> users = new List<User>();
 
+    public static bool MegaExit = false;
+
     static void Main(string[] args)
     {
         // Sets window title
         Console.Title = "Flight Reservation App";
 
         // Defines a list for storing users and some test users. Will delete those later
-        User debugAdmin = new Admin("admin", "DEBUG.ACCOUNT@gmail.com", "password");
-        User debugPassanger = new Passanger("user", "DEBUG.ACCOUNT@gmail.com", "password");
+        User debugAdmin = new Admin("admin", "DEBUG.ADMIN@gmail.com", "password");
+        User debugPassanger = new Passanger("user", "DEBUG.USER@gmail.com", "password");
         users.Add(debugAdmin);
         users.Add(debugPassanger);
         User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
@@ -168,8 +170,10 @@ class Program
         else
         {
             // If the user wasn't found, tell the user
+            Console.Clear();
             Console.WriteLine($"Sorry, {loginName} not found in users");
         }
+        Program.MegaExit = false;
     }
 
     // Function for creating a new user
