@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Security.Principal;
 using System.Text;
 
 namespace FlightManagementSystem
@@ -125,7 +126,7 @@ namespace FlightManagementSystem
             do
             {
                 Console.WriteLine("[ 1. Display all users ]");
-                Console.WriteLine("[ 2. Add a new user ]");
+                Console.WriteLine("[ 2. Add a new Admin user ]");
                 Console.WriteLine("[ 3. Remove a user ]");
                 Console.WriteLine("[ 4. Update a users details ]");
                 Console.WriteLine("[ 0. Back ]");
@@ -149,13 +150,13 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Adding a new user...");
                         Console.WriteLine();
-                        // AddNewUser();
+                        AddNewAdmin();
                         break;
                     case 3:
                         Console.Clear();
                         Console.WriteLine("Removeing a user...");
                         Console.WriteLine();
-                        // RemoveAUser();
+                        RemoveAUser();
                         break;
                     case 4:
                         Console.Clear();
@@ -179,5 +180,53 @@ namespace FlightManagementSystem
                 Console.WriteLine();
             }
         }
+        public static void AddNewAdmin()
+        {
+            Console.Clear();
+            Console.WriteLine("[ Registering A New Admin Account Account ]");
+            Console.Write("Please enter the Full Name: ");
+            string addAdminName = Console.ReadLine();
+            Console.Write("Please enter the Email: ");
+            string addAdminEmail = Console.ReadLine();
+            Console.Write("Please enter the Password: ");
+            string addAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { addAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+            Console.Write("Please confirm the Password: ");
+            string confirmAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+
+            if (addAdminPassword == confirmAdminPassword)
+            {
+                Console.Clear();
+                Console.WriteLine("They are now registered!");
+                Console.WriteLine();
+                User newAdmin = new Admin(addAdminName, addAdminEmail, addAdminPassword);
+                Program.users.Add(newAdmin);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
+        }
+        public static void RemoveAUser()
+        {
+            Console.Write("Which user do you want to remove: ");
+            string removeUser = Console.ReadLine();
+            
+            User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(removeUser, StringComparison.OrdinalIgnoreCase));
+            if (deleteUser != null)
+            {
+                Program.users.Remove(deleteUser);
+                Console.WriteLine("Account has been removed.");
+            }
+            else
+            {
+                Console.WriteLine("Account not found.");
+            }
+            Console.WriteLine();
+        }
+
+        
+
     }// end of class
 }
