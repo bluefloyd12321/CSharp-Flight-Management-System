@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Threading.Channels;
 using System.Transactions;
@@ -191,6 +192,7 @@ class Program // start of program
         string registerName = Console.ReadLine();
         Console.Write("Please enter your Email: ");
         string registerEmail = Console.ReadLine();
+        
         Console.Write("Please enter your Password: ");
         string registerPassword = null;
         while (true)
@@ -249,9 +251,9 @@ class Program // start of program
                 break;
             }
         }
-
+        
         // Check the inputted passwords match
-        if (registerPassword == confirmPassword)
+        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail))
         {
             // If yes, add the user to the users list
             Console.Clear();
@@ -260,11 +262,23 @@ class Program // start of program
             User newUser = new Passanger(registerName, registerEmail, registerPassword);
             users.Add(newUser);
         }
-        else
+        else if (registerPassword == confirmPassword)
         {
             // Otherwise, tell the users the passwords don't match
             Console.Clear();
+            Console.WriteLine("Email is invalid format, please try again...");
+        }
+        else if (new EmailAddressAttribute().IsValid(registerEmail))
+        {
+            // Otherwise, tell the users the email format is invalid
+            Console.Clear();
             Console.WriteLine("Passwords do not match, please try again...");
+        }
+        else
+        {
+            // Both password and email are wrong
+            Console.Clear();
+            Console.WriteLine("You screwed up, please try again...");
         }
     }
 
