@@ -57,10 +57,7 @@ public class Flight
 			return "Seats booked";
 		}
 	}
-
-	public string 
-
-
+	
 	public void DisplayFlightDetails() 
 	{
 		Console.WriteLine($"Flight Number:\t{FlightNumber}");

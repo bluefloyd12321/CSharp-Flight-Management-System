@@ -123,7 +123,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Booking a flight...");
                         Console.WriteLine();
-                        Program.flightBookings.BookFlight();
+                        -.flightBookings.BookFlight();
                         break;
                     case 5:
                         // Unbooks flight
