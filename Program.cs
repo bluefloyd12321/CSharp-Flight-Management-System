@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Threading.Channels;
 using System.Transactions;
@@ -6,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FlightManagementSystem;
 
-class Program
+class Program // start of program
 {
     // Creates a global booking class that can be accessed anywhere through Program.flightBookings
     public static Booking flightBookings = new Booking();
@@ -16,14 +17,16 @@ class Program
 
     public static List<User> users = new List<User>();
 
+    public static bool MegaExit = false;
+
     static void Main(string[] args)
     {
         // Sets window title
         Console.Title = "Flight Reservation App";
 
         // Defines a list for storing users and some test users. Will delete those later
-        User debugAdmin = new Admin("admin", "DEBUG.ACCOUNT@gmail.com", "password");
-        User debugPassanger = new Passanger("user", "DEBUG.ACCOUNT@gmail.com", "password");
+        User debugAdmin = new Admin("admin", "DEBUG.ADMIN@gmail.com", "password");
+        User debugPassanger = new Passanger("user", "DEBUG.USER@gmail.com", "password");
         users.Add(debugAdmin);
         users.Add(debugPassanger);
         User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
@@ -34,6 +37,8 @@ class Program
         users.Add(morgan);
         users.Add(damien);
         users.Add(katie);
+
+        
 
         // Display app title to user
         Console.Clear();
@@ -82,6 +87,9 @@ class Program
                     {
                         Console.WriteLine($"{display.Username}, {display.Email}, {display.Password}");
                     }
+                    break;
+                case 9:
+                    User.RR();
                     break;
                 default:
                     // Default case if user inputs an invalid option
@@ -168,8 +176,10 @@ class Program
         else
         {
             // If the user wasn't found, tell the user
+            Console.Clear();
             Console.WriteLine($"Sorry, {loginName} not found in users");
         }
+        Program.MegaExit = false;
     }
 
     // Function for creating a new user
@@ -182,6 +192,7 @@ class Program
         string registerName = Console.ReadLine();
         Console.Write("Please enter your Email: ");
         string registerEmail = Console.ReadLine();
+        
         Console.Write("Please enter your Password: ");
         string registerPassword = null;
         while (true)
@@ -240,9 +251,9 @@ class Program
                 break;
             }
         }
-
+        
         // Check the inputted passwords match
-        if (registerPassword == confirmPassword)
+        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail))
         {
             // If yes, add the user to the users list
             Console.Clear();
@@ -251,11 +262,23 @@ class Program
             User newUser = new Passanger(registerName, registerEmail, registerPassword);
             users.Add(newUser);
         }
-        else
+        else if (registerPassword == confirmPassword)
         {
             // Otherwise, tell the users the passwords don't match
             Console.Clear();
+            Console.WriteLine("Email is invalid format, please try again...");
+        }
+        else if (new EmailAddressAttribute().IsValid(registerEmail))
+        {
+            // Otherwise, tell the users the email format is invalid
+            Console.Clear();
             Console.WriteLine("Passwords do not match, please try again...");
+        }
+        else
+        {
+            // Both password and email are wrong
+            Console.Clear();
+            Console.WriteLine("You screwed up, please try again...");
         }
     }
 

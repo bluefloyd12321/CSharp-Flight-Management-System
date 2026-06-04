@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Security.Principal;
 using System.Text;
 
 namespace FlightManagementSystem
@@ -125,9 +126,10 @@ namespace FlightManagementSystem
             do
             {
                 Console.WriteLine("[ 1. Display all users ]");
-                Console.WriteLine("[ 2. Add a new user ]");
+                Console.WriteLine("[ 2. Add a new Admin user ]");
                 Console.WriteLine("[ 3. Remove a user ]");
-                Console.WriteLine("[ 4. Update a users details ]");
+                Console.WriteLine("[ 4. Update this admins details ]");
+                Console.WriteLine("[ 5. Update another users details ]");
                 Console.WriteLine("[ 0. Back ]");
                 mainMenuOption = Convert.ToInt32(Console.ReadLine());
 
@@ -143,25 +145,31 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Displaying all users...");
                         Console.WriteLine();
-                        // DisplayAllUsers();
+                        DisplayAllUsers();
                         break;
                     case 2:
                         Console.Clear();
                         Console.WriteLine("Adding a new user...");
                         Console.WriteLine();
-                        // AddNewUser();
+                        AddNewAdmin();
                         break;
                     case 3:
                         Console.Clear();
                         Console.WriteLine("Removeing a user...");
                         Console.WriteLine();
-                        // RemoveAUser();
+                        RemoveAUser();
                         break;
                     case 4:
                         Console.Clear();
-                        Console.WriteLine("Editing a users details...");
+                        Console.WriteLine("Editing this admin users details...");
                         Console.WriteLine();
-                        // EditAUsersDetails();
+                        EditThisAdminsDetails();
+                        break;
+                    case 5:
+                        Console.Clear();
+                        Console.WriteLine("Searching and updating another users details...");
+                        Console.WriteLine();
+                        SearchAndUpdateAUser();
                         break;
                     default:
                         Console.Clear();
@@ -171,6 +179,121 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of AdminUserManagement
+        public static void DisplayAllUsers()
+        {
+            for (int i = 0; i < Program.users.Count; i++)
+            {
+                Console.WriteLine($"User in index {i + 1} has: \n\t   Username: \t{Program.users[i].Username}\n\t      Email: \t{Program.users[i].Email}\n\t   Password: \t{Program.users[i].Password}");
+                Console.WriteLine();
+            }
+        }
+        public static void AddNewAdmin()
+        {
+            Console.Clear();
+            Console.WriteLine("[ Registering A New Admin Account Account ]");
+            Console.Write("Please enter the Full Name: ");
+            string addAdminName = Console.ReadLine();
+            Console.Write("Please enter the Email: ");
+            string addAdminEmail = Console.ReadLine();
+            Console.Write("Please enter the Password: ");
+            string addAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { addAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+            Console.Write("Please confirm the Password: ");
+            string confirmAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-    }
+            if (addAdminPassword == confirmAdminPassword)
+            {
+                Console.Clear();
+                Console.WriteLine("They are now registered!");
+                Console.WriteLine();
+                User newAdmin = new Admin(addAdminName, addAdminEmail, addAdminPassword);
+                Program.users.Add(newAdmin);
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
+        }
+        public static void RemoveAUser()
+        {
+            Console.Write("Which user do you want to remove: ");
+            string removeUser = Console.ReadLine();
+            
+            User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(removeUser, StringComparison.OrdinalIgnoreCase));
+            if (deleteUser != null)
+            {
+                Program.users.Remove(deleteUser);
+                Console.WriteLine("Account has been removed.");
+            }
+            else
+            {
+                Console.WriteLine("Account not found.");
+            }
+            Console.WriteLine();
+        }
+        public static void EditThisAdminsDetails()
+        {
+            Console.Write($"Your NEW Username is: ");
+            string newUsername = Console.ReadLine();
+            Console.Write($"Your NEW Email is: ");
+            string newEmail = Console.ReadLine();
+
+            Console.Write($"Your NEW Password is: ");
+            string newPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { newPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+
+            Console.Write($"Confirm Your NEW Password: ");
+            string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+
+            if (newPassword == confirmNewPassword)
+            {
+                Console.Clear();
+                Console.WriteLine("Details are now updated!");
+                Program.currentUser.Username = newUsername;
+                Program.currentUser.Email = newEmail;
+                Program.currentUser.Password = newPassword;
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
+        }
+        public static void SearchAndUpdateAUser()
+        {
+            Console.Write("Which user do you want to update: ");
+            string searchUser = Console.ReadLine();
+
+            User updateUser = Program.users.Find(updateUser => updateUser.Username.Equals(searchUser, StringComparison.OrdinalIgnoreCase));
+            if (updateUser != null)
+            {
+                // Program.users.Remove(updateUser);
+                Console.Clear();
+                Console.Write($"The NEW Username is: ");
+                string newUsername = Console.ReadLine();
+                Console.Write($"The NEW Email is: ");
+                string newEmail = Console.ReadLine();
+
+                Console.Write($"The NEW Password is: ");
+                string newPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { newPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+
+                Console.Write($"Confirm the NEW Password: ");
+                string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
+                
+                Console.WriteLine();
+                Console.WriteLine("Details are now updated!");
+                updateUser.Username = newUsername;
+                updateUser.Email = newEmail;
+                updateUser.Password = newPassword;
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Account not found.");
+            }
+            Console.WriteLine();
+        }
+    }// end of class
 }
