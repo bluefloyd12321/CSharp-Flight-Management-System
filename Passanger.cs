@@ -78,7 +78,7 @@ namespace FlightManagementSystem
             } while (LOOP);
         } // end of PassangerMainMenu
 
-        public static void PassangerFlightInfomationMenu()
+        public static void PassangerFlightInfomationMenu() // passanger flight interaction menu
         {
             int mainMenuOption;
             bool LOOP = true;
@@ -147,7 +147,7 @@ namespace FlightManagementSystem
             } while (LOOP);
         } // end of PassangerFlightInfomationMenu
 
-        public static void PassangerAccountOptionsMenu()
+        public static void PassangerAccountOptionsMenu() // menu for the passanger account options
         {
             int mainMenuOption;
             bool LOOP = true;
@@ -181,7 +181,7 @@ namespace FlightManagementSystem
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?");
+                        Console.WriteLine("ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?"); // confromation to delete account
                         Console.WriteLine("( Yes / No )");
                         string accountDeleteConfirmation = "No";
                         accountDeleteConfirmation = Console.ReadLine();
@@ -189,8 +189,8 @@ namespace FlightManagementSystem
                         {
                             Console.WriteLine("Deleting your account...");
                             
-                            DeleteThisPassangerAccount();
-                            LOOP = false;
+                            DeleteThisPassangerAccount(); // do deletion of account method
+                            LOOP = false; // end this menu loop to exit
                         }
                         else
                         {
@@ -206,14 +206,14 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of PassangerAccountMenu
-        public static void DisplayMyAccountDetails()
+        public static void DisplayMyAccountDetails() // displaying users details menu
         {
             Console.WriteLine($"Your Username is: \t{Program.currentUser.Username}");
             Console.WriteLine($"Your Email is: \t\t{Program.currentUser.Email}");
             Console.WriteLine($"Your Password is: \t{Program.currentUser.Password}");
             Console.WriteLine();
         }
-        public static void UpdateThisAccountDetails()
+        public static void UpdateThisAccountDetails() // updating this accounts details
         {
             Console.Write($"Your NEW Username is: ");
             string newUsername = Console.ReadLine(); 
@@ -228,7 +228,7 @@ namespace FlightManagementSystem
 
             if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
             {
-                Console.Clear();
+                Console.Clear(); // if all fields are valid, update the account
                 Console.WriteLine("Details are now updated!");
                 Program.currentUser.Username = newUsername;
                 Program.currentUser.Email = newEmail;
@@ -251,14 +251,14 @@ namespace FlightManagementSystem
             }
             else
             {
-                Console.Clear();
+                Console.Clear(); // this runs when the user hasnt inputted a valid email AND passwords dont match
                 Console.WriteLine("You screwed up, please try again...");
                 Console.WriteLine();
             }
 
         }
 
-        public static void DeleteThisPassangerAccount()
+        public static void DeleteThisPassangerAccount() // just deletes the current user
         {
             User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(Program.currentUser.Username, StringComparison.OrdinalIgnoreCase));
             Program.users.Remove(deleteUser);

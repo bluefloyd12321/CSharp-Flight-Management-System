@@ -63,8 +63,8 @@ class Program // start of program
 
             switch (mainMenuOption)
             {
-                // Exits the app
                 case 0:
+                    // Exits the app
                     LOOP = false;
 
                     Console.Clear();
@@ -150,13 +150,13 @@ class Program // start of program
                 Console.Clear();
                 Console.WriteLine("LOGIN SUCCESS!");
                 Console.WriteLine();
-                if (searchName is Admin)
+                if (searchName is Admin) // if admin >> go to admin main menu
                 {
                     currentUser = searchName;
                     Admin.AdminMainMenu();
                     currentUser = null;
                 }
-                else if (searchName is Passanger)
+                else if (searchName is Passanger) // if passanger >> go to passanger main menu
                 {
                     currentUser = searchName;
                     Passanger.PassangerMainMenu();
