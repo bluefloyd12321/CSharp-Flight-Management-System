@@ -30,17 +30,17 @@ namespace FlightManagementSystem
         {
             int mainMenuOption;
             bool LOOP = true;
-            do
+            do // admins main menu loop
             {
                 Console.WriteLine("[ 1. Flight Management ]");
                 Console.WriteLine("[ 2. User Management ]");
                 Console.WriteLine("[ 0. Logout of account ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                mainMenuOption = Convert.ToInt32(Console.ReadLine()); // option input
 
                 switch (mainMenuOption)
                 {
                     case 0:
-                        LOOP = false;
+                        LOOP = false; // exiting loop
                         Console.Clear();
                         Console.WriteLine("Logging out...");
                         break;
@@ -69,7 +69,7 @@ namespace FlightManagementSystem
         {
             int mainMenuOption;
             bool LOOP = true;
-            do
+            do // admin flight options menu
             {
                 Console.WriteLine("[ 1. Display all flights ]");
                 Console.WriteLine("[ 2. Add a new flight ]");
@@ -124,7 +124,7 @@ namespace FlightManagementSystem
         {
             int mainMenuOption;
             bool LOOP = true;
-            do
+            do // admin user management options menu
             {
                 Console.WriteLine("[ 1. Display all users ]");
                 Console.WriteLine("[ 2. Add a new Admin user ]");
@@ -180,7 +180,7 @@ namespace FlightManagementSystem
                 }
             } while (LOOP);
         } // end of AdminUserManagement
-        public static void DisplayAllUsers()
+        public static void DisplayAllUsers() // for loop looping till all user details are displayed
         {
             for (int i = 0; i < Program.users.Count; i++)
             {
@@ -188,7 +188,7 @@ namespace FlightManagementSystem
                 Console.WriteLine();
             }
         }
-        public static void AddNewAdmin()
+        public static void AddNewAdmin() // adding a new admin to the list of admins
         {
             Console.Clear();
             Console.WriteLine("[ Registering A New Admin Account Account ]");
@@ -203,7 +203,7 @@ namespace FlightManagementSystem
 
             if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail))
             {
-                Console.Clear();
+                Console.Clear(); // if true, add the new admin to the admin list
                 Console.WriteLine("They are now registered!");
                 Console.WriteLine();
                 User newAdmin = new Admin(addAdminName, addAdminEmail, addAdminPassword);
@@ -231,13 +231,13 @@ namespace FlightManagementSystem
                 Console.WriteLine();
             }
         }
-        public static void RemoveAUser()
+        public static void RemoveAUser() // searching and removing a user method
         {
             Console.Write("Which user do you want to remove: ");
             string removeUser = Console.ReadLine();
 
             User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(removeUser, StringComparison.OrdinalIgnoreCase));
-            if (deleteUser != null)
+            if (deleteUser != null) // finding user then deleting them
             {
                 Program.users.Remove(deleteUser);
                 Console.WriteLine("Account has been removed.");
@@ -248,7 +248,7 @@ namespace FlightManagementSystem
             }
             Console.WriteLine();
         }
-        public static void EditThisAdminsDetails()
+        public static void EditThisAdminsDetails() // editing the details of the current admin who is logged in and is using the program
         {
             Console.Write($"Your NEW Username is: ");
             string newUsername = Console.ReadLine();
@@ -263,7 +263,7 @@ namespace FlightManagementSystem
 
             if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
             {
-                Console.Clear();
+                Console.Clear(); // if true, update this users details
                 Console.WriteLine("Details are now updated!");
                 Program.currentUser.Username = newUsername;
                 Program.currentUser.Email = newEmail;
@@ -291,15 +291,15 @@ namespace FlightManagementSystem
                 Console.WriteLine();
             }
         }
-        public static void SearchAndUpdateAUser()
+        public static void SearchAndUpdateAUser() // search and update a users details
         {
             Console.Write("Which user do you want to update: ");
             string searchUser = Console.ReadLine();
 
             User updateUser = Program.users.Find(updateUser => updateUser.Username.Equals(searchUser, StringComparison.OrdinalIgnoreCase));
-            if (updateUser != null)
+            if (updateUser != null) // if a user is found...
             {
-                Console.Clear();
+                Console.Clear(); // entering the new details
                 Console.WriteLine("User found, please enter the new users details...");
                 Console.WriteLine();
                 Console.Write($"The NEW Username is: ");
@@ -315,7 +315,7 @@ namespace FlightManagementSystem
                 
                 if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
                 {
-                    Console.Clear();
+                    Console.Clear(); // if password and email are valid... update user details
                     Console.WriteLine("Details are now updated!");
                     updateUser.Username = newUsername;
                     updateUser.Email = newEmail;
@@ -335,7 +335,7 @@ namespace FlightManagementSystem
                 }
                 else
                 {
-                    Console.Clear();
+                    Console.Clear(); // this runs when the user hasnt inputted a valid email AND passwords dont match
                     Console.WriteLine("You screwed up, please try again...");
                 }
             }
