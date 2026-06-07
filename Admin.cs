@@ -287,7 +287,7 @@ namespace FlightManagementSystem
             else
             {
                 Console.Clear();
-                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine("You screwed up, please try again...");
                 Console.WriteLine();
             }
         }
@@ -300,6 +300,8 @@ namespace FlightManagementSystem
             if (updateUser != null)
             {
                 Console.Clear();
+                Console.WriteLine("User found, please enter the new users details...");
+                Console.WriteLine();
                 Console.Write($"The NEW Username is: ");
                 string newUsername = Console.ReadLine();
                 Console.Write($"The NEW Email is: ");
@@ -310,12 +312,32 @@ namespace FlightManagementSystem
 
                 Console.Write($"Confirm the NEW Password: ");
                 string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
-
-                Console.WriteLine();
-                Console.WriteLine("Details are now updated!");
-                updateUser.Username = newUsername;
-                updateUser.Email = newEmail;
-                updateUser.Password = newPassword;
+                
+                if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Details are now updated!");
+                    updateUser.Username = newUsername;
+                    updateUser.Email = newEmail;
+                    updateUser.Password = newPassword;
+                }
+                else if (newPassword == confirmNewPassword)
+                {
+                    // Otherwise, tell the users the passwords don't match
+                    Console.Clear();
+                    Console.WriteLine("Email is invalid format, please try again...");
+                }
+                else if (new EmailAddressAttribute().IsValid(newEmail))
+                {
+                    // Otherwise, tell the users the email format is invalid
+                    Console.Clear();
+                    Console.WriteLine("Passwords do not match, please try again...");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("You screwed up, please try again...");
+                }
             }
             else
             {
