@@ -108,7 +108,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Editing flight infomation...");
                         Console.WriteLine();
-                        // EditFlightInfo();
+                        Program.flightBookings.EditFlightInfo();
                         break;
                     default:
                         Console.Clear();
