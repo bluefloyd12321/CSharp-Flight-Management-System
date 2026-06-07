@@ -8,7 +8,7 @@ namespace FlightManagementSystem
     {
         // fields
         private string username, email, password;
-        private List<Flight> bookedFlights = new List<Flight>();
+        public List<Flight> bookedFlights = new List<Flight>();
 
         // properties
         public string Username { get { return username; } set { username = value; } }

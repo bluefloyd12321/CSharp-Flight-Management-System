@@ -7,15 +7,15 @@ Feature List:
 - Will revisit before submission
 
 Todo:
-- [ ] Implement user booking
-- [ ] Implement the ability to edit flights
-- [ ] unbook flights
 - [ ] Implement Searching for flights
-- [ ] Update user details
 
-Done so far:
+Implemented Features:
 - [x] Full ui skeleton
 - [x] Login and registration
 - [x] Admin functionality
 - [x] Adding flights to flight list
 - [x] Displaying flights on flight schedule
+- [x] Update user details
+- [x] unbook flights
+- [x] Implement user booking
+- [x] Implement the ability to edit flights
