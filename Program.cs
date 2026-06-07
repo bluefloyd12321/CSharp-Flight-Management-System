@@ -24,7 +24,7 @@ class Program // start of program
         // Sets window title
         Console.Title = "Flight Reservation App";
 
-        // Defines a list for storing users and some test users. Will delete those later
+        // Defines a list for storing users and some test users.
         User debugAdmin = new Admin("admin", "DEBUG.ADMIN@gmail.com", "password");
         User debugPassanger = new Passanger("user", "DEBUG.USER@gmail.com", "password");
         users.Add(debugAdmin);
@@ -38,6 +38,8 @@ class Program // start of program
         users.Add(damien);
         users.Add(katie);
 
+        // Defines some test flights
+        flightBookings.BookTestFlights();
         
 
         // Display app title to user

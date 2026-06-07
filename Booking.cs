@@ -19,13 +19,6 @@ public class Booking
         {
             flight.DisplayFlightDetails();
         }
-        if (Program.currentUser is Admin)
-        {
-            Console.WriteLine("Is Admin");
-        }
-        else {
-            Console.WriteLine("Is passenger");
-        }
     }
 
     // User based methods
@@ -116,5 +109,22 @@ public class Booking
     public void EditFlightInfo() 
     { 
         // 
+    }
+
+    public void BookTestFlights() {
+        DateTime test1Date = DateTime.Parse("10/11/26 09:00");
+        DateTime test2Date = DateTime.Parse("14/12/26 17:00");
+        DateTime test3Date = DateTime.Parse("01/02/27 08:45");
+        DateTime test4Date = DateTime.Parse("02/09/27 20:15");
+        
+        Flight test1 = new Flight(test1Date, 001, "Sydney", "Wellington", 005, "On Time", 5);
+        Flight test2 = new Flight(test2Date, 002, "Auckland", "Wellington", 006, "Delayed", 5);
+        Flight test3 = new Flight(test3Date, 003, "Christchurch", "Wellington", 007, "On Time", 3);
+        Flight test4 = new Flight(test4Date, 004, "Queenstown", "Wellington", 008, "On Time", 1);
+
+        flights.Add(test1);
+        flights.Add(test2);
+        flights.Add(test3);
+        flights.Add(test4);
     }
 }
