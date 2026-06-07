@@ -100,9 +100,9 @@ namespace FlightManagementSystem
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Removeing a flight...");
+                        Console.WriteLine("Removing a flight...");
                         Console.WriteLine();
-                        // RemoveAFlight();
+                        Program.flightBookings.RemoveAFlight();
                         break;
                     case 4:
                         Console.Clear();

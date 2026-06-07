@@ -103,7 +103,25 @@ public class Booking
 
     public void RemoveAFlight() 
     {
-        // 
+        DisplayAllFlights();
+        Console.Write("Please enter then number of the flight you'd like to remove: ");
+        int flightNum = Convert.ToInt32(Console.ReadLine());
+
+        Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
+        if(flight != null) 
+        {
+            Console.Write($"Are you sure you want to remove flight {flight.FlightNumber} (yes/no)? ");
+            string confirm = Console.ReadLine();
+            if (confirm.ToLower() == "yes")
+            {
+                flights.Remove(flight);
+                Console.WriteLine("Flight removed");
+            }
+            else 
+            {
+                Console.WriteLine("Okay, going back...");
+            }
+        }
     }
 
     public void EditFlightInfo() 
