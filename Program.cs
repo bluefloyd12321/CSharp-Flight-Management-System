@@ -255,7 +255,7 @@ class Program // start of program
         }
         
         // Check the inputted passwords match
-        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail))
+        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail) && !string.IsNullOrWhiteSpace(registerName))
         {
             // If yes, add the user to the users list
             Console.Clear();
@@ -263,6 +263,11 @@ class Program // start of program
 
             User newUser = new Passanger(registerName, registerEmail, registerPassword);
             users.Add(newUser);
+        }
+        else if (string.IsNullOrWhiteSpace(registerName) || string.IsNullOrWhiteSpace(registerPassword))
+        {
+            Console.Clear(); // if there is an invalid space, print error
+            Console.WriteLine("Input cannot be empty. Please try again.");
         }
         else if (registerPassword == confirmPassword)
         {

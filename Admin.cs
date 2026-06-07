@@ -201,13 +201,19 @@ namespace FlightManagementSystem
             Console.Write("Please confirm the Password: ");
             string confirmAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail))
+            if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail) && !string.IsNullOrWhiteSpace(addAdminName))
             {
                 Console.Clear(); // if true, add the new admin to the admin list
                 Console.WriteLine("They are now registered!");
                 Console.WriteLine();
                 User newAdmin = new Admin(addAdminName, addAdminEmail, addAdminPassword);
                 Program.users.Add(newAdmin);
+            }
+            else if (string.IsNullOrWhiteSpace(addAdminName) || string.IsNullOrWhiteSpace(addAdminPassword))
+            {
+                Console.Clear(); // if there is an invalid space, print error
+                Console.WriteLine("Input cannot be empty. Please try again.");
+                Console.WriteLine();
             }
             else if (addAdminPassword == confirmAdminPassword)
             {
@@ -261,13 +267,19 @@ namespace FlightManagementSystem
             Console.Write($"Confirm Your NEW Password: ");
             string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
+            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
             {
                 Console.Clear(); // if true, update this users details
                 Console.WriteLine("Details are now updated!");
                 Program.currentUser.Username = newUsername;
                 Program.currentUser.Email = newEmail;
                 Program.currentUser.Password = newPassword;
+                Console.WriteLine();
+            }
+            else if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
+            {
+                Console.Clear(); // if there is an invalid space, print error
+                Console.WriteLine("Input cannot be empty. Please try again.");
                 Console.WriteLine();
             }
             else if (newPassword == confirmNewPassword)
@@ -313,13 +325,19 @@ namespace FlightManagementSystem
                 Console.Write($"Confirm the NEW Password: ");
                 string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
                 
-                if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
+                if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
                 {
                     Console.Clear(); // if password and email are valid... update user details
                     Console.WriteLine("Details are now updated!");
                     updateUser.Username = newUsername;
                     updateUser.Email = newEmail;
                     updateUser.Password = newPassword;
+                }
+                else if (string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newPassword))
+                {
+                    Console.Clear(); // if there is an invalid space, print error
+                    Console.WriteLine("Input cannot be empty. Please try again.");
+                    Console.WriteLine();
                 }
                 else if (newPassword == confirmNewPassword)
                 {
