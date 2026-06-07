@@ -58,6 +58,7 @@ public class Flight
 		}
 	}
 
+	// Just updates the seats available in a flight
 	public void UnbookSeats(int seatsBooked)
 	{
 		SeatsAvailable += seatsBooked;
