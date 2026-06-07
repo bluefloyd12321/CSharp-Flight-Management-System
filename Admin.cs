@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Security.Principal;
 using System.Text;
@@ -200,7 +201,7 @@ namespace FlightManagementSystem
             Console.Write("Please confirm the Password: ");
             string confirmAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (addAdminPassword == confirmAdminPassword)
+            if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail))
             {
                 Console.Clear();
                 Console.WriteLine("They are now registered!");
@@ -208,10 +209,25 @@ namespace FlightManagementSystem
                 User newAdmin = new Admin(addAdminName, addAdminEmail, addAdminPassword);
                 Program.users.Add(newAdmin);
             }
-            else
+            else if (addAdminPassword == confirmAdminPassword)
             {
+                // Otherwise, tell the users the passwords don't match
+                Console.Clear();
+                Console.WriteLine("Email is invalid format, please try again...");
+                Console.WriteLine();
+            }
+            else if (new EmailAddressAttribute().IsValid(addAdminEmail))
+            {
+                // Otherwise, tell the users the email format is invalid
                 Console.Clear();
                 Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
+            else
+            {
+                // Both password and email are wrong
+                Console.Clear();
+                Console.WriteLine("You screwed up, please try again...");
                 Console.WriteLine();
             }
         }
@@ -219,7 +235,7 @@ namespace FlightManagementSystem
         {
             Console.Write("Which user do you want to remove: ");
             string removeUser = Console.ReadLine();
-            
+
             User deleteUser = Program.users.Find(deleteUser => deleteUser.Username.Equals(removeUser, StringComparison.OrdinalIgnoreCase));
             if (deleteUser != null)
             {
@@ -245,13 +261,27 @@ namespace FlightManagementSystem
             Console.Write($"Confirm Your NEW Password: ");
             string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (newPassword == confirmNewPassword)
+            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
             {
                 Console.Clear();
                 Console.WriteLine("Details are now updated!");
                 Program.currentUser.Username = newUsername;
                 Program.currentUser.Email = newEmail;
                 Program.currentUser.Password = newPassword;
+                Console.WriteLine();
+            }
+            else if (newPassword == confirmNewPassword)
+            {
+                // Otherwise, tell the users the passwords don't match
+                Console.Clear();
+                Console.WriteLine("Email is invalid format, please try again...");
+                Console.WriteLine();
+            }
+            else if (new EmailAddressAttribute().IsValid(newEmail))
+            {
+                // Otherwise, tell the users the email format is invalid
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
                 Console.WriteLine();
             }
             else
@@ -269,7 +299,6 @@ namespace FlightManagementSystem
             User updateUser = Program.users.Find(updateUser => updateUser.Username.Equals(searchUser, StringComparison.OrdinalIgnoreCase));
             if (updateUser != null)
             {
-                // Program.users.Remove(updateUser);
                 Console.Clear();
                 Console.Write($"The NEW Username is: ");
                 string newUsername = Console.ReadLine();
@@ -281,7 +310,7 @@ namespace FlightManagementSystem
 
                 Console.Write($"Confirm the NEW Password: ");
                 string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
-                
+
                 Console.WriteLine();
                 Console.WriteLine("Details are now updated!");
                 updateUser.Username = newUsername;
