@@ -135,7 +135,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("UnBooking a flight...");
                         Console.WriteLine();
-                        // UnBookFlight();
+                        Program.flightBookings.UnBookFlight();
                         break;
                     default:
                         // Default for invalid options

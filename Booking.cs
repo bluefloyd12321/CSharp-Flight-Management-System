@@ -64,7 +64,33 @@ public class Booking
 
     }
 
-    public void UnBookFlight() { }
+    public void UnBookFlight() 
+    { 
+        DisplayMyFlights();
+        Console.Write("Please enter the flight number to unbook: ");
+        int flightNum = Convert.ToInt32(Console.ReadLine());
+
+        Flight flight = Program.currentUser.bookedFlights.Find(flight => flight.FlightNumber.Equals(flightNum));
+        if (flight != null)
+        {
+            Console.Write("How many seats did you book? ");
+            int seatsBooked = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Are you sure you wish to unbook (yes/no)? ");
+            string confirm = Console.ReadLine();
+
+            if (confirm.ToLower() == "yes")
+            {
+                flight.UnbookSeats(seatsBooked);
+                Program.currentUser.bookedFlights.Remove(flight);
+                Console.WriteLine("Flight has been unbooked.");
+            }
+            else
+            {
+                Console.WriteLine("Flight has not been unbooked.");
+            }
+        }
+    }
 
     // Admin based methods
 
@@ -121,6 +147,11 @@ public class Booking
             {
                 Console.WriteLine("Okay, going back...");
             }
+        }
+        else 
+        {
+            Console.WriteLine("Flight not found");
+            Console.WriteLine(flight);
         }
     }
 
@@ -203,6 +234,9 @@ public class Booking
                 }
             } while(LOOP);
             
+        }
+        else {
+            Console.WriteLine("Flight Not Found");
         }
     }
 
