@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace FlightManagementSystem
@@ -189,10 +190,7 @@ namespace FlightManagementSystem
                             Console.WriteLine("Deleting your account...");
                             
                             DeleteThisPassangerAccount();
-                            if (Program.MegaExit = true)
-                            {
-                                LOOP = false;
-                            }
+                            LOOP = false;
                         }
                         else
                         {
@@ -228,7 +226,7 @@ namespace FlightManagementSystem
             Console.Write($"Confirm Your NEW Password: ");
             string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (newPassword == confirmNewPassword)
+            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail))
             {
                 Console.Clear();
                 Console.WriteLine("Details are now updated!");
@@ -237,10 +235,24 @@ namespace FlightManagementSystem
                 Program.currentUser.Password = newPassword;
                 Console.WriteLine();
             }
+            else if (newPassword == confirmNewPassword)
+            {
+                // Otherwise, tell the users the passwords don't match
+                Console.Clear();
+                Console.WriteLine("Email is invalid format, please try again...");
+                Console.WriteLine();
+            }
+            else if (new EmailAddressAttribute().IsValid(newEmail))
+            {
+                // Otherwise, tell the users the email format is invalid
+                Console.Clear();
+                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine();
+            }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Passwords do not match, please try again...");
+                Console.WriteLine("You screwed up, please try again...");
                 Console.WriteLine();
             }
 
