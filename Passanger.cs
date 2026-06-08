@@ -121,7 +121,7 @@ namespace FlightManagementSystem
                         Console.Clear();
                         Console.WriteLine("Searching a specific flight...");
                         Console.WriteLine();
-                        // SearchSpecificFlight();
+                        Program.flightBookings.SearchSpecificFlight();
                         break;
                     case 4:
                         // Books a flight

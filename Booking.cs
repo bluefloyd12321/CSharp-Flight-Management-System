@@ -28,14 +28,70 @@ public class Booking
     // Method for searching for a flight
     public void SearchSpecificFlight() 
     { 
+        List<Flight> flightSearchResults = new List<Flight>();
         bool LOOP = true;
         do
         {
+            // Asks the user if they want to search by origin or destination
             Console.WriteLine("1) Search by Flight Destination");
             Console.WriteLine("2) Search by Flight Origin");
             Console.WriteLine("0) Back");
-            int mainMenuOption = Convert.ToInt32(Console.ReadLine());
-            
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch(choice) 
+            {
+                // Asks the user to input the destination. Then searches for that destination and displays the results
+                case 1:
+                    Console.Write("Please enter a destination to search for: ");
+                    string destination = Console.ReadLine();
+                    foreach(Flight flight in flights)
+                    {
+                        if(flight.FlightDestination == destination)
+                        {
+                            flightSearchResults.Add(flight);
+                        }
+                    }
+                    Console.WriteLine($"We found {flightSearchResults.Count()} flights going to {destination}:");
+                    foreach(Flight flight in flightSearchResults)
+                    {
+                        flight.DisplayFlightDetails();
+                    }
+                    Console.Write("Please press any key to continue...");
+                    Console.ReadLine();
+                    break;
+                // Asks the user to input the origin. Searches then displays those results
+                case 2:
+                    Console.Write("Please enter an origin to search for: ");
+                    string origin = Console.ReadLine();
+                    foreach(Flight flight in flights)
+                    {
+                        if(flight.FlightOrigin == origin)
+                        {
+                            flightSearchResults.Add(flight);
+                        }
+                    }
+                    Console.WriteLine($"We found {flightSearchResults.Count()} flights from to {origin}:");
+                    foreach(Flight flight in flightSearchResults)
+                    {
+                        flight.DisplayFlightDetails();
+                    }
+                    Console.Write("Please press any key to continue...");
+                    Console.ReadLine();
+                    break;
+                // Simply goes back
+                case 0:
+                    Console.WriteLine("Okay, going back...");
+                    LOOP = false;
+                    break;
+                default:
+                    break;
+            }
+            Console.WriteLine(flightSearchResults.Count);
+            for(int i = flightSearchResults.Count - 1; i >= 0; i--)
+            {
+                flightSearchResults.RemoveAt(i);
+            }
+            Console.Clear();
         } while(LOOP);
     }
 
