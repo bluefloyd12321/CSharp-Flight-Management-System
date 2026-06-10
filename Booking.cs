@@ -19,40 +19,49 @@ public class Booking
 
     // User based methods
     // Just calls user.GetBookedFlights and displays any flights in the bookedFlights list in user.cs
-    public void DisplayMyFlights() 
-    { 
+    public void DisplayMyFlights()
+    {
         Console.WriteLine("Displaying flights....");
         Program.currentUser.GetBookedFlights();
     }
 
     // Method for searching for a flight
-    public void SearchSpecificFlight() 
-    { 
+    public void SearchSpecificFlight()
+    {
         List<Flight> flightSearchResults = new List<Flight>();
         bool LOOP = true;
         do
         {
+            int choice = 99;
             // Asks the user if they want to search by origin or destination
             Console.WriteLine("1) Search by Flight Destination");
             Console.WriteLine("2) Search by Flight Origin");
             Console.WriteLine("0) Back");
-            int choice = Convert.ToInt32(Console.ReadLine());
 
-            switch(choice) 
+            try
+            {
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Sorry, please enter a number.");
+            }
+
+            switch (choice)
             {
                 // Asks the user to input the destination. Then searches for that destination and displays the results
                 case 1:
                     Console.Write("Please enter a destination to search for: ");
                     string destination = Console.ReadLine();
-                    foreach(Flight flight in flights)
+                    foreach (Flight flight in flights)
                     {
-                        if(flight.FlightDestination == destination)
+                        if (flight.FlightDestination == destination)
                         {
                             flightSearchResults.Add(flight);
                         }
                     }
                     Console.WriteLine($"We found {flightSearchResults.Count()} flights going to {destination}:");
-                    foreach(Flight flight in flightSearchResults)
+                    foreach (Flight flight in flightSearchResults)
                     {
                         flight.DisplayFlightDetails();
                     }
@@ -63,15 +72,15 @@ public class Booking
                 case 2:
                     Console.Write("Please enter an origin to search for: ");
                     string origin = Console.ReadLine();
-                    foreach(Flight flight in flights)
+                    foreach (Flight flight in flights)
                     {
-                        if(flight.FlightOrigin == origin)
+                        if (flight.FlightOrigin == origin)
                         {
                             flightSearchResults.Add(flight);
                         }
                     }
                     Console.WriteLine($"We found {flightSearchResults.Count()} flights from to {origin}:");
-                    foreach(Flight flight in flightSearchResults)
+                    foreach (Flight flight in flightSearchResults)
                     {
                         flight.DisplayFlightDetails();
                     }
@@ -87,24 +96,24 @@ public class Booking
                     break;
             }
             Console.WriteLine(flightSearchResults.Count);
-            for(int i = flightSearchResults.Count - 1; i >= 0; i--)
+            for (int i = flightSearchResults.Count - 1; i >= 0; i--)
             {
                 flightSearchResults.RemoveAt(i);
             }
             Console.Clear();
-        } while(LOOP);
+        } while (LOOP);
     }
 
     // Loops 
-    public void BookFlight() 
-    { 
+    public void BookFlight()
+    {
         DisplayAllFlights();
-        
+
         Console.Write("Please select type a flight number to book a seat: ");
         int flightNum = Convert.ToInt32(Console.ReadLine());
 
         Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
-        if (flight != null) 
+        if (flight != null)
         {
             Console.Write("How many seats are you booking? ");
             int seatsBooked = Convert.ToInt32(Console.ReadLine());
@@ -128,12 +137,20 @@ public class Booking
     }
 
     // Method for unbooking the flights
-    public void UnBookFlight() 
-    { 
+    public void UnBookFlight()
+    {
+        int flightNum = 0;
         // Displays flights to the user
         DisplayMyFlights();
         Console.Write("Please enter the flight number to unbook: ");
-        int flightNum = Convert.ToInt32(Console.ReadLine());
+        try
+        {
+            flightNum = Convert.ToInt32(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Sorry, please enter a number.");
+        }
 
         // Checks for flights in the booked flights list. Then confirms if the user wants to remove flight and remvoves the flight
         Flight flight = Program.currentUser.bookedFlights.Find(flight => flight.FlightNumber.Equals(flightNum));
@@ -194,7 +211,7 @@ public class Booking
     }
 
     // Method for removing a flight
-    public void RemoveAFlight() 
+    public void RemoveAFlight()
     {
         // Displays options to the user
         DisplayAllFlights();
@@ -203,7 +220,7 @@ public class Booking
 
         // Searches for the flight, asks the user if they want to remove then removes flight.
         Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
-        if(flight != null) 
+        if (flight != null)
         {
             Console.Write($"Are you sure you want to remove flight {flight.FlightNumber} (yes/no)? ");
             string confirm = Console.ReadLine();
@@ -212,12 +229,12 @@ public class Booking
                 flights.Remove(flight);
                 Console.WriteLine("Flight removed");
             }
-            else 
+            else
             {
                 Console.WriteLine("Okay, going back...");
             }
         }
-        else 
+        else
         {
             Console.WriteLine("Flight not found");
             Console.WriteLine(flight);
@@ -225,8 +242,8 @@ public class Booking
     }
 
     // Edits the information for a given flight. 
-    public void EditFlightInfo() 
-    { 
+    public void EditFlightInfo()
+    {
         // Shows the flights to the user
         DisplayAllFlights();
         Console.Write("Please enter the flight number for the flight you want to edit: ");
@@ -234,10 +251,12 @@ public class Booking
 
         // Searches for the flight
         Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
-        if(flight != null)
+        if (flight != null)
         {
+            int choice = 9999;
             bool LOOP = true;
-            do {
+            do
+            {
                 // Displays options to the user then asks for their input
                 Console.WriteLine("1) Flight Date");
                 Console.WriteLine("2) Flight Destination");
@@ -247,10 +266,18 @@ public class Booking
                 Console.WriteLine("6) Seats Available");
                 Console.WriteLine("7) Go Back");
                 Console.Write("Which section do you want to edit? ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Sorry, please enter a number.");
+                }
 
                 // Based on their choice, give the option to edit that piece of information.
-                switch(choice) 
+                switch (choice)
                 {
                     case 1:
                         DateTime flightDate = default;
@@ -268,25 +295,25 @@ public class Booking
                         flight.FlightDestination = destination;
                         Console.WriteLine("Destination has been updated");
                         break;
-                    case 3: 
+                    case 3:
                         Console.Write("Please enter the new origin: ");
                         string origin = Console.ReadLine();
                         flight.FlightOrigin = origin;
                         Console.WriteLine("Origin has been updated");
                         break;
-                    case 4: 
+                    case 4:
                         Console.Write("Please enter the new gate number: ");
                         int gateNum = Convert.ToInt32(Console.ReadLine());
                         flight.GateNumber = gateNum;
                         Console.WriteLine("Gate number has been updated");
                         break;
-                    case 5: 
+                    case 5:
                         Console.Write("Please enter the new status: ");
                         string status = Console.ReadLine();
                         flight.FlightStatus = status;
                         Console.WriteLine("Status has been updated");
                         break;
-                    case 6: 
+                    case 6:
                         Console.Write("Please enter the new amount of seats available: ");
                         int seats = Convert.ToInt32(Console.ReadLine());
                         flight.SeatsAvailable = seats;
@@ -296,25 +323,27 @@ public class Booking
                         Console.WriteLine("Okay, going back...");
                         LOOP = false;
                         break;
-                    default: 
+                    default:
                         Console.WriteLine("Sorry, that's not a valid option. Please try again.");
                         break;
                 }
-            } while(LOOP);
-            
+            } while (LOOP);
+
         }
-        else {
+        else
+        {
             Console.WriteLine("Flight Not Found");
         }
     }
 
     // Just books some test flights
-    public void BookTestFlights() {
+    public void BookTestFlights()
+    {
         DateTime test1Date = DateTime.Parse("10/11/26 09:00");
         DateTime test2Date = DateTime.Parse("14/12/26 17:00");
         DateTime test3Date = DateTime.Parse("01/02/27 08:45");
         DateTime test4Date = DateTime.Parse("02/09/27 20:15");
-        
+
         Flight test1 = new Flight(test1Date, 001, "Sydney", "Wellington", 005, "On Time", 5);
         Flight test2 = new Flight(test2Date, 002, "Auckland", "Wellington", 006, "Delayed", 5);
         Flight test3 = new Flight(test3Date, 003, "Christchurch", "Wellington", 007, "On Time", 3);

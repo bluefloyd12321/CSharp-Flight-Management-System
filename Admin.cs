@@ -28,14 +28,22 @@ namespace FlightManagementSystem
         // methods
         public static void AdminMainMenu()
         {
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do // admins main menu loop
             {
                 Console.WriteLine("[ 1. Flight Management ]");
                 Console.WriteLine("[ 2. User Management ]");
                 Console.WriteLine("[ 0. Logout of account ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine()); // option input
+
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
 
                 switch (mainMenuOption)
                 {
@@ -67,7 +75,7 @@ namespace FlightManagementSystem
 
         public static void AdminFlightInfomation()
         {
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do // admin flight options menu
             {
@@ -76,7 +84,15 @@ namespace FlightManagementSystem
                 Console.WriteLine("[ 3. Remove a flight ]");
                 Console.WriteLine("[ 4. Edit flight Info ]");
                 Console.WriteLine("[ 0. Back ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
 
                 switch (mainMenuOption)
                 {
@@ -122,7 +138,7 @@ namespace FlightManagementSystem
 
         public static void AdminUserManagement()
         {
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do // admin user management options menu
             {
@@ -132,7 +148,15 @@ namespace FlightManagementSystem
                 Console.WriteLine("[ 4. Update this admins details ]");
                 Console.WriteLine("[ 5. Update another users details ]");
                 Console.WriteLine("[ 0. Back ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
 
                 switch (mainMenuOption)
                 {
@@ -324,7 +348,7 @@ namespace FlightManagementSystem
 
                 Console.Write($"Confirm the NEW Password: ");
                 string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
-                
+
                 if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
                 {
                     Console.Clear(); // if password and email are valid... update user details

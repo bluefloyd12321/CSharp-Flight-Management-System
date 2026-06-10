@@ -32,7 +32,7 @@ namespace FlightManagementSystem
         public static void PassangerMainMenu()
         {
             // Main loop
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do
             {
@@ -40,7 +40,14 @@ namespace FlightManagementSystem
                 Console.WriteLine("[ 1. Flight information ]");
                 Console.WriteLine("[ 2. Account options ]");
                 Console.WriteLine("[ 0. Logout of account ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
 
                 switch (mainMenuOption)
                 {
@@ -80,7 +87,7 @@ namespace FlightManagementSystem
 
         public static void PassangerFlightInfomationMenu() // passanger flight interaction menu
         {
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do
             {
@@ -91,8 +98,15 @@ namespace FlightManagementSystem
                 Console.WriteLine("[ 4. Book a flight ]");
                 Console.WriteLine("[ 5. UnBook a flight ]");
                 Console.WriteLine("[ 0. Back ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
 
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
                 switch (mainMenuOption)
                 {
                     case 0:
@@ -149,7 +163,7 @@ namespace FlightManagementSystem
 
         public static void PassangerAccountOptionsMenu() // menu for the passanger account options
         {
-            int mainMenuOption;
+            int mainMenuOption = 9999;
             bool LOOP = true;
             do
             {
@@ -157,7 +171,15 @@ namespace FlightManagementSystem
                 Console.WriteLine("[ 2. Update your detials ]");
                 Console.WriteLine("[ 3. Delete your account ]");
                 Console.WriteLine("[ 0. Back ]");
-                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+                try
+                {
+                    mainMenuOption = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a number.");
+                }
 
                 switch (mainMenuOption)
                 {
@@ -188,7 +210,7 @@ namespace FlightManagementSystem
                         if (accountDeleteConfirmation == "Yes")
                         {
                             Console.WriteLine("Deleting your account...");
-                            
+
                             DeleteThisPassangerAccount(); // do deletion of account method
                             LOOP = false; // end this menu loop to exit
                         }
@@ -216,7 +238,7 @@ namespace FlightManagementSystem
         public static void UpdateThisAccountDetails() // updating this accounts details
         {
             Console.Write($"Your NEW Username is: ");
-            string newUsername = Console.ReadLine(); 
+            string newUsername = Console.ReadLine();
             Console.Write($"Your NEW Email is: ");
             string newEmail = Console.ReadLine();
 

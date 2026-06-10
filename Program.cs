@@ -21,6 +21,11 @@ class Program // start of program
 
     static void Main(string[] args)
     {
+        Console.WriteLine("Waiting for debugger to attach...");
+        while (!System.Diagnostics.Debugger.IsAttached)
+        {
+            System.Threading.Thread.Sleep(100);
+        }
         // Sets window title
         Console.Title = "Flight Reservation App";
 
@@ -40,7 +45,7 @@ class Program // start of program
 
         // Defines some test flights
         flightBookings.BookTestFlights();
-        
+
 
         // Display app title to user
         Console.Clear();
@@ -49,7 +54,7 @@ class Program // start of program
         Console.WriteLine("******************************");
 
         // Core app loop
-        int mainMenuOption;
+        int mainMenuOption = 9999;
         bool LOOP = true;
         do
         {
@@ -58,8 +63,15 @@ class Program // start of program
             Console.WriteLine("[ 1. Register an account ]");
             Console.WriteLine("[ 2. Login to an account ]");
             Console.WriteLine("[ 0. EXIT ]");
-            
-            mainMenuOption = Convert.ToInt32(Console.ReadLine());
+
+            try
+            {
+                mainMenuOption = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Sorry, please enter a number.");
+            }
 
             switch (mainMenuOption)
             {
@@ -194,7 +206,7 @@ class Program // start of program
         string registerName = Console.ReadLine();
         Console.Write("Please enter your Email: ");
         string registerEmail = Console.ReadLine();
-        
+
         Console.Write("Please enter your Password: ");
         string registerPassword = null;
         while (true)
@@ -253,7 +265,7 @@ class Program // start of program
                 break;
             }
         }
-        
+
         // Check the inputted passwords match
         if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail) && !string.IsNullOrWhiteSpace(registerName))
         {
