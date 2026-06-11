@@ -21,11 +21,6 @@ class Program // start of program
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Waiting for debugger to attach...");
-        while (!System.Diagnostics.Debugger.IsAttached)
-        {
-            System.Threading.Thread.Sleep(100);
-        }
         // Sets window title
         Console.Title = "Flight Reservation App";
 
