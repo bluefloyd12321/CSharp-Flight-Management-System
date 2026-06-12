@@ -173,6 +173,10 @@ public class Booking
                 Console.WriteLine("Flight has not been unbooked.");
             }
         }
+        else
+        {
+            Console.WriteLine("Sorry, flight was not found.");
+        }
     }
 
     // Admin based methods
@@ -264,7 +268,7 @@ public class Booking
             bool LOOP = true;
             do
             {
-                
+
                 flight.DisplayFlightDetails();
                 // Displays options to the user then asks for their input
                 Console.WriteLine("1) Flight Date");
