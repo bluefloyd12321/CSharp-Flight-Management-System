@@ -204,6 +204,7 @@ public class Booking
 
         Console.Write("Please enter the flight seats available: ");
         int seatsAvailable = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine();
 
         // Adds flight to the list
         Flight newFlight = new Flight(flightDate, flightNum, flightDest, flightOrigin, gateNum, flightStat, seatsAvailable);
