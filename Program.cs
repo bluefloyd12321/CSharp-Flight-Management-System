@@ -25,13 +25,9 @@ class Program // start of program
         Console.Title = "Flight Reservation App";
 
         // Defines a list for storing users and some test users.
-        User debugAdmin = new Admin("admin", "DEBUG.ADMIN@gmail.com", "password");
-        User debugPassanger = new Passanger("user", "DEBUG.USER@gmail.com", "password");
-        users.Add(debugAdmin);
-        users.Add(debugPassanger);
-        User vee = new Admin("Vee McCabe", "Vee@gmail.com", "0224623917");
-        User morgan = new Admin("Morgan Piper", "Morgan@gmail.com", "BlueFloyd12321");
-        User damien = new Passanger("Damien Oliver", "Damien@gmail.com", "HairyDog");
+        User vee = new Admin("Vee", "Vee@gmail.com", "Vera");
+        User morgan = new Admin("Morgan", "Morgan@gmail.com", "BlueFloyd12321");
+        User damien = new Passanger("Damien", "Damien@gmail.com", "HairyDog");
         User katie = new Passanger("Katie", "Katie@gmail.com", "IDontCare");
         users.Add(vee);
         users.Add(morgan);

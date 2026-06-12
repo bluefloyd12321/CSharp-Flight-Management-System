@@ -167,16 +167,21 @@ public class Booking
             {
                 flight.UnbookSeats(seatsBooked);
                 Program.currentUser.bookedFlights.Remove(flight);
+                Console.Clear();
                 Console.WriteLine("Flight has been unbooked.");
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Flight has not been unbooked.");
             }
+            Console.WriteLine();
         }
         else
         {
-            Console.WriteLine("Sorry, flight was not found.");
+            Console.Clear();
+            Console.WriteLine("Sorry, flight was not found...");
+            Console.WriteLine();
         }
     }
 
