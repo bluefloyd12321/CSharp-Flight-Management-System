@@ -225,10 +225,11 @@ public class Booking
         {
             Console.Write($"Are you sure you want to remove flight {flight.FlightNumber} (yes/no)? ");
             string confirm = Console.ReadLine();
+            Console.Clear();
             if (confirm.ToLower() == "yes")
             {
                 flights.Remove(flight);
-                Console.WriteLine("Flight removed");
+                Console.WriteLine("Flight removed...");
             }
             else
             {
@@ -237,9 +238,10 @@ public class Booking
         }
         else
         {
-            Console.WriteLine("Flight not found");
+            Console.WriteLine("Flight not found...");
             Console.WriteLine(flight);
         }
+        Console.WriteLine();
     }
 
     // Edits the information for a given flight. 
@@ -249,15 +251,21 @@ public class Booking
         DisplayAllFlights();
         Console.Write("Please enter the flight number for the flight you want to edit: ");
         int flightNum = Convert.ToInt32(Console.ReadLine());
+        Console.Clear();
 
         // Searches for the flight
         Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
         if (flight != null)
         {
+            Console.WriteLine($"Editing flight number [{flight.FlightNumber}]...");
+            Console.WriteLine();
+
             int choice = 9999;
             bool LOOP = true;
             do
             {
+                
+                flight.DisplayFlightDetails();
                 // Displays options to the user then asks for their input
                 Console.WriteLine("1) Flight Date");
                 Console.WriteLine("2) Flight Destination");
@@ -266,7 +274,8 @@ public class Booking
                 Console.WriteLine("5) Flight Status");
                 Console.WriteLine("6) Seats Available");
                 Console.WriteLine("7) Go Back");
-                Console.Write("Which section do you want to edit? ");
+                Console.WriteLine();
+                Console.Write("Which section do you want to edit: ");
 
                 try
                 {
@@ -288,46 +297,55 @@ public class Booking
                             flightDate = potentialDate;
                         }
                         flight.FlightDate = flightDate;
-                        Console.WriteLine("Date has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Date has been updated...");
                         break;
                     case 2:
                         Console.Write("Please enter the new destination: ");
                         string destination = Console.ReadLine();
                         flight.FlightDestination = destination;
-                        Console.WriteLine("Destination has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Destination has been updated...");
                         break;
                     case 3:
                         Console.Write("Please enter the new origin: ");
                         string origin = Console.ReadLine();
                         flight.FlightOrigin = origin;
-                        Console.WriteLine("Origin has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Origin has been updated...");
                         break;
                     case 4:
                         Console.Write("Please enter the new gate number: ");
                         int gateNum = Convert.ToInt32(Console.ReadLine());
                         flight.GateNumber = gateNum;
-                        Console.WriteLine("Gate number has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Gate number has been updated...");
                         break;
                     case 5:
                         Console.Write("Please enter the new status: ");
                         string status = Console.ReadLine();
                         flight.FlightStatus = status;
-                        Console.WriteLine("Status has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Status has been updated...");
                         break;
                     case 6:
                         Console.Write("Please enter the new amount of seats available: ");
                         int seats = Convert.ToInt32(Console.ReadLine());
                         flight.SeatsAvailable = seats;
-                        Console.WriteLine("Seats available has been updated");
+                        Console.Clear();
+                        Console.WriteLine("Seats available has been updated...");
                         break;
                     case 7:
+                        Console.Clear();
                         Console.WriteLine("Okay, going back...");
                         LOOP = false;
                         break;
                     default:
-                        Console.WriteLine("Sorry, that's not a valid option. Please try again.");
+                        Console.Clear();
+                        Console.WriteLine("Sorry, that's not a valid option. Please try again...");
                         break;
                 }
+                Console.WriteLine();
             } while (LOOP);
 
         }
