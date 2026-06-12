@@ -218,10 +218,18 @@ public class Booking
     // Method for removing a flight
     public void RemoveAFlight()
     {
+        int flightNum = 0;
         // Displays options to the user
         DisplayAllFlights();
         Console.Write("Please enter then number of the flight you'd like to remove: ");
-        int flightNum = Convert.ToInt32(Console.ReadLine());
+        try
+        {
+            flightNum = Convert.ToInt32(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Sorry, please enter a number.");
+        }
 
         // Searches for the flight, asks the user if they want to remove then removes flight.
         Flight flight = flights.Find(flight => flight.FlightNumber.Equals(flightNum));
