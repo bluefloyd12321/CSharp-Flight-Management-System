@@ -262,7 +262,7 @@ class Program // start of program
         }
 
         // Check the inputted passwords match
-        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail) && !string.IsNullOrWhiteSpace(registerName))
+        if (registerPassword == confirmPassword && new EmailAddressAttribute().IsValid(registerEmail) && !string.IsNullOrWhiteSpace(registerName) && !string.IsNullOrWhiteSpace(registerPassword))
         {
             // If yes, add the user to the users list
             Console.Clear();

@@ -248,7 +248,7 @@ namespace FlightManagementSystem
             Console.Write($"Confirm Your NEW Password: ");
             string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
+            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername) && !string.IsNullOrWhiteSpace(newPassword))
             {
                 Console.Clear(); // if all fields are valid, update the account
                 Console.WriteLine("Details are now updated!");

@@ -225,7 +225,7 @@ namespace FlightManagementSystem
             Console.Write("Please confirm the Password: ");
             string confirmAdminPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmAdminPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail) && !string.IsNullOrWhiteSpace(addAdminName))
+            if (addAdminPassword == confirmAdminPassword && new EmailAddressAttribute().IsValid(addAdminEmail) && !string.IsNullOrWhiteSpace(addAdminName) && !string.IsNullOrWhiteSpace(addAdminEmail))
             {
                 Console.Clear(); // if true, add the new admin to the admin list
                 Console.WriteLine("They are now registered!");
@@ -291,7 +291,7 @@ namespace FlightManagementSystem
             Console.Write($"Confirm Your NEW Password: ");
             string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
+            if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername) && !string.IsNullOrWhiteSpace(newPassword))
             {
                 Console.Clear(); // if true, update this users details
                 Console.WriteLine("Details are now updated!");
@@ -349,7 +349,7 @@ namespace FlightManagementSystem
                 Console.Write($"Confirm the NEW Password: ");
                 string confirmNewPassword = null; while (true) { ConsoleKeyInfo ck = Console.ReadKey(true); if (ck.Key != ConsoleKey.Enter) { if (ck.Key != ConsoleKey.Backspace) { confirmNewPassword += ck.KeyChar.ToString(); Console.Write("*"); } else { Console.Write("\b \b"); } } else { Console.WriteLine(); break; } }
 
-                if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername))
+                if (newPassword == confirmNewPassword && new EmailAddressAttribute().IsValid(newEmail) && !string.IsNullOrWhiteSpace(newUsername) && !string.IsNullOrWhiteSpace(newPassword))
                 {
                     Console.Clear(); // if password and email are valid... update user details
                     Console.WriteLine("Details are now updated!");
