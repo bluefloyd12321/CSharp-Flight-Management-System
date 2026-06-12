@@ -21,7 +21,6 @@ public class Booking
     // Just calls user.GetBookedFlights and displays any flights in the bookedFlights list in user.cs
     public void DisplayMyFlights()
     {
-        Console.WriteLine("Displaying flights....");
         Program.currentUser.GetBookedFlights();
     }
 
@@ -117,22 +116,24 @@ public class Booking
         {
             Console.Write("How many seats are you booking? ");
             int seatsBooked = Convert.ToInt32(Console.ReadLine());
-
+            Console.Clear();
             if (flight.UpdateSeats(seatsBooked) == "Seats booked")
             {
                 Program.currentUser.AddFlightToList(flight);
-                Console.WriteLine("Flight booked successfully");
+                Console.WriteLine("Flight booked successfully...");
             }
             else
             {
-                Console.WriteLine("Flight could not be booked");
+                Console.WriteLine("Flight could not be booked...");
             }
         }
         else
         {
-            Console.WriteLine("Flight not found");
-            Console.WriteLine(flight);
+            Console.Clear();
+            Console.WriteLine("Flight not found...");
+            Console.Write(flight);
         }
+        Console.WriteLine();
 
     }
 
@@ -239,7 +240,7 @@ public class Booking
         else
         {
             Console.WriteLine("Flight not found...");
-            Console.WriteLine(flight);
+            Console.Write(flight);
         }
         Console.WriteLine();
     }

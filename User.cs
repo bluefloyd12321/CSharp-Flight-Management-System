@@ -31,7 +31,6 @@ namespace FlightManagementSystem
 
         public void AddFlightToList(Flight flight)
         {
-            Console.WriteLine("Adding flights....");
             bookedFlights.Add(flight);
         }
 
